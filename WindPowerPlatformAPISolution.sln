@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C88459EF-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindPowerPlatformAPI.Tests", "test\WindPowerPlatformAPI.Tests\WindPowerPlatformAPI.Tests.csproj", "{ABA1EF48-F151-49A2-9711-1D98926AE5D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindPowerPlatformAPI.Domain", "src\WindPowerPlatformAPI.Domain\WindPowerPlatformAPI.Domain.csproj", "{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindPowerPlatformAPI.Infrastructure", "src\WindPowerPlatformAPI.Infrastructure\WindPowerPlatformAPI.Infrastructure.csproj", "{ED30663F-C0B1-4495-BC48-774CA00B1B11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,30 @@ Global
 		{ABA1EF48-F151-49A2-9711-1D98926AE5D8}.Release|x64.Build.0 = Release|Any CPU
 		{ABA1EF48-F151-49A2-9711-1D98926AE5D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABA1EF48-F151-49A2-9711-1D98926AE5D8}.Release|x86.Build.0 = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|x64.Build.0 = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Debug|x86.Build.0 = Debug|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|x64.ActiveCfg = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|x64.Build.0 = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|x86.ActiveCfg = Release|Any CPU
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780}.Release|x86.Build.0 = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|x64.Build.0 = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Debug|x86.Build.0 = Debug|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|x64.ActiveCfg = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|x64.Build.0 = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +80,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9EBF9B15-415A-4A60-B6CC-D0584EC8692E} = {8A41217E-9F6E-4353-9B30-C9215A35BF49}
 		{ABA1EF48-F151-49A2-9711-1D98926AE5D8} = {C88459EF-0760-4530-8428-36FCFCD960AB}
+		{1CBABF49-EBB9-4950-8C4E-9A17AD8FD780} = {8A41217E-9F6E-4353-9B30-C9215A35BF49}
+		{ED30663F-C0B1-4495-BC48-774CA00B1B11} = {8A41217E-9F6E-4353-9B30-C9215A35BF49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {983AAEA7-DB62-4CD5-9698-4FBDAAEDE9BE}
