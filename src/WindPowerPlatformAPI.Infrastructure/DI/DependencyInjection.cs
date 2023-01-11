@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WindPowerPlatformAPI.Infrastructure.Repositories;
-using WindPowerPlatformAPI.Infrastructure.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Data.Repositories;
+using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
 
 namespace WindPowerPlatformAPI.Infrastructure.DI
 {

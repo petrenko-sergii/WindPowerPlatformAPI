@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WindPowerPlatformAPI.Domain.Entities;
 
-namespace WindPowerPlatformAPI.Infrastructure.Repositories.Interfaces
+namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces
 {
 	public interface ICommandRepository
 	{

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
-using WindPowerPlatformAPI.Infrastructure.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {

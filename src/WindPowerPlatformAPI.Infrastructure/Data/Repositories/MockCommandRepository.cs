@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using WindPowerPlatformAPI.Domain.Entities;
-using WindPowerPlatformAPI.Infrastructure.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
 
-namespace WindPowerPlatformAPI.Infrastructure.Repositories
+namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 {
 	public class MockCommandRepository : ICommandRepository
 	{
