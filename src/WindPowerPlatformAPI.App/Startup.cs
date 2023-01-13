@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
 
 namespace WindPowerPlatformAPI.App
@@ -24,6 +26,10 @@ namespace WindPowerPlatformAPI.App
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CommandContext>(opt =>
+                        opt.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection"), 
+                        b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
+
             services.AddControllers();
 
             services.ConfigureDependencyInjection(Configuration);

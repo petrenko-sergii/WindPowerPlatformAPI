@@ -10,6 +10,14 @@ namespace WindPowerPlatformAPI.Infrastructure.Data
         {
         }
 
-        public DbSet<Command> CommandItems { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<Command>().ToTable("Commands");
+        //    modelBuilder.Entity<Command>().Property(i => i.Id).ValueGeneratedOnAdd();
+        //}
+
+        public DbSet<Command> Commands { get; set; }
     }
 }
