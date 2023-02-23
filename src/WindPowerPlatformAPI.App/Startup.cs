@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
+using Npgsql;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -26,8 +27,13 @@ namespace WindPowerPlatformAPI.App
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new NpgsqlConnectionStringBuilder();
+            builder.ConnectionString = Configuration.GetConnectionString("PostgreSqlConnection");
+            builder.Username = Configuration["UserID"];
+            builder.Password = Configuration["Password"];
+
             services.AddDbContext<CommandContext>(opt =>
-                        opt.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection"), 
+                        opt.UseNpgsql(builder.ConnectionString, 
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
 
             services.AddControllers();
