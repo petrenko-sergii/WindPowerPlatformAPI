@@ -32,7 +32,7 @@ namespace WindPowerPlatformAPI.App
             builder.Username = Configuration["UserID"];
             builder.Password = Configuration["Password"];
 
-            services.AddDbContext<CommandContext>(opt =>
+            services.AddDbContext<ApplicationDbContext>(opt =>
                         opt.UseNpgsql(builder.ConnectionString, 
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
 

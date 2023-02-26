@@ -8,7 +8,7 @@ using WindPowerPlatformAPI.Infrastructure.Data;
 
 namespace WindPowerPlatformAPI.Infrastructure.Migrations
 {
-    [DbContext(typeof(CommandContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230226202910_Turbine")]
     partial class Turbine
     {

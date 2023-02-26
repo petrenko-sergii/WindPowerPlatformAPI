@@ -8,7 +8,7 @@ using WindPowerPlatformAPI.Infrastructure.Data;
 
 namespace WindPowerPlatformAPI.Infrastructure.Migrations
 {
-    [DbContext(typeof(CommandContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230113204145_CreateDB")]
     partial class CreateDB
     {

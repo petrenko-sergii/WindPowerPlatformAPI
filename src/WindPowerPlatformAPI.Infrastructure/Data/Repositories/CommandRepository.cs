@@ -9,9 +9,9 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 {
     class CommandRepository : ICommandRepository
     {
-        private readonly CommandContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CommandRepository(CommandContext context)
+        public CommandRepository(ApplicationDbContext context)
         {
             _context = context;
         }

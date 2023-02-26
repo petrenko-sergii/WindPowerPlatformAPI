@@ -8,9 +8,9 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 {
     class TurbineRepository : ITurbineRepository
     {
-        private readonly CommandContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public TurbineRepository(CommandContext context)
+        public TurbineRepository(ApplicationDbContext context)
         {
             _context = context;
         }

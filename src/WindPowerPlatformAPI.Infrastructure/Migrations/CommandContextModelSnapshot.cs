@@ -7,7 +7,7 @@ using WindPowerPlatformAPI.Infrastructure.Data;
 
 namespace WindPowerPlatformAPI.Infrastructure.Migrations
 {
-    [DbContext(typeof(CommandContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class CommandContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
