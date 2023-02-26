@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
-using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -9,32 +9,32 @@ namespace WindPowerPlatformAPI.App.Controllers
 	[ApiController]
 	public class CommandsController : ControllerBase
 	{
-		private readonly ICommandRepository _repository;
+		private readonly ICommandService _service;
 
-        public CommandsController(ICommandRepository repository)
+		public CommandsController(ICommandService service)
         {
-			_repository = repository;
+			_service = service;
         }
 
 		[HttpGet]
 		public ActionResult<IEnumerable<Command>> GetAllCommands()
 		{
-			var commandItems = _repository.GetAllCommands();
+			var commands = _service.GetAllCommands();
 
-			return Ok(commandItems);
+			return Ok(commands);
 		}
 
 		[HttpGet("{id}")]
 		public ActionResult<Command> GetCommandById(int id)
 		{
-			var commandItem = _repository.GetCommandById(id);
+			var command = _service.GetCommandById(id);
 
-			if (commandItem == null)
+			if (command == null)
 			{
 				return NotFound();
 			}
 
-			return Ok(commandItem);
+			return Ok(command);
 		}
 	}
 }
