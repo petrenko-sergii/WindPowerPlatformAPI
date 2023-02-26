@@ -38,6 +38,47 @@
 			"response": []
 		},
 		{
+			"name": "localhost:44350 - Get turbine",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44350/api/turbines/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"turbines",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:44350 - Get turbines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44350/api/turbines",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"turbines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET - commands",
 			"request": {
 				"method": "GET",
@@ -93,6 +134,26 @@
 					"path": [
 						"api",
 						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - turbines - https",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/turbines",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"turbines"
 					]
 				}
 			},

@@ -20,11 +20,13 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
         private static void AddServices(IServiceCollection services)
         {
             services.AddScoped<ICommandService, CommandService>();
+            services.AddScoped<ITurbineService, TurbineService>();
         }
 
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<ICommandRepository, CommandRepository>();
+            services.AddScoped<ITurbineRepository, TurbineRepository>();
         }
     }
 }

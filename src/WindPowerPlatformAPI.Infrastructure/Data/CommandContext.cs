@@ -19,5 +19,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Data
         //}
 
         public DbSet<Command> Commands { get; set; }
+
+        public DbSet<Turbine> Turbines { get; set; }
     }
 }
