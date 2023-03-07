@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using WindPowerPlatformAPI.Domain.Entities;
+using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
@@ -17,7 +17,7 @@ namespace WindPowerPlatformAPI.App.Controllers
         }
 
 		[HttpGet]
-		public ActionResult<IEnumerable<Command>> GetAllCommands()
+		public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
 		{
 			var commands = _service.GetAllCommands();
 
@@ -25,7 +25,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<Command> GetCommandById(int id)
+		public ActionResult<CommandReadDto> GetCommandById(int id)
 		{
 			var command = _service.GetCommandById(id);
 

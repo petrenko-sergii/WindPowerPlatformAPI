@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
 using Npgsql;
+using AutoMapper;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -37,6 +38,9 @@ namespace WindPowerPlatformAPI.App
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
 
             services.AddControllers();
+
+            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.ConfigureDependencyInjection(Configuration);
         }

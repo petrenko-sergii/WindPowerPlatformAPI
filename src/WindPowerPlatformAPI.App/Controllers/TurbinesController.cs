@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Dtos;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -17,7 +17,7 @@ namespace WindPowerPlatformAPI.App.Controllers
         }
 
 		[HttpGet]
-		public ActionResult<IEnumerable<Turbine>> GetAllTurbines()
+		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines()
 		{
 			var turbines = _service.GetAllTurbines();
 
@@ -25,7 +25,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<Turbine> GetTurbineById(int id)
+		public ActionResult<TurbineReadDto> GetTurbineById(int id)
 		{
 			var turbine = _service.GetTurbineById(id);
 

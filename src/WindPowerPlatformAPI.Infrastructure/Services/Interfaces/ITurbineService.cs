@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using WindPowerPlatformAPI.Domain.Entities;
+using WindPowerPlatformAPI.Infrastructure.Dtos;
 
 namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
 {
     public interface ITurbineService
     {
-        IEnumerable<Turbine> GetAllTurbines();
+        IEnumerable<TurbineReadDto> GetAllTurbines();
 
-        Turbine GetTurbineById(int id);
+        TurbineReadDto GetTurbineById(int id);
     }
 }

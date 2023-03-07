@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
 namespace WindPowerPlatformAPI.Infrastructure.Services
@@ -8,24 +10,27 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
     public class TurbineService : ITurbineService
     {
         private readonly ITurbineRepository _repository;
+        private readonly IMapper _mapper;
 
-        public TurbineService(ITurbineRepository repository)
+        public TurbineService(ITurbineRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Turbine> GetAllTurbines()
+        public IEnumerable<TurbineReadDto> GetAllTurbines()
         {
             var turbines = _repository.GetAllTurbines();
 
-            return turbines;
+            return _mapper.Map<IEnumerable<TurbineReadDto>>(turbines);
         }
 
-        public Turbine GetTurbineById(int id)
+        public TurbineReadDto GetTurbineById(int id)
         {
             var turbine = _repository.GetTurbineById(id);
 
-            return turbine;
+            //return _mapper.Map<Turbine, TurbineReadDto>(turbine);
+            return _mapper.Map<TurbineReadDto>(turbine);
         }
     }
 }

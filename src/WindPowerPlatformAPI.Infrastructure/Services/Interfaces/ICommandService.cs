@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using WindPowerPlatformAPI.Domain.Entities;
+using WindPowerPlatformAPI.Infrastructure.Dtos;
 
 namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
 {
     public interface ICommandService
     {
-        IEnumerable<Command> GetAllCommands();
+        IEnumerable<CommandReadDto> GetAllCommands();
 
-        Command GetCommandById(int id);
+        CommandReadDto GetCommandById(int id);
     }
 }
