@@ -31,5 +31,17 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
 
             return _mapper.Map<CommandReadDto>(commandItem);
         }
+
+        public CommandReadDto CreateCommand(CommandCreateDto commandCreateDto)
+        {
+            var commandModel = _mapper.Map<Command>(commandCreateDto);
+            _repository.CreateCommand(commandModel);
+            _repository.SaveChanges();
+
+            var createdCommandId = _mapper.Map<CommandReadDto>(commandModel).Id;
+            var createdCommand = GetCommandById(createdCommandId);
+
+            return createdCommand;
+        }
     }
 }

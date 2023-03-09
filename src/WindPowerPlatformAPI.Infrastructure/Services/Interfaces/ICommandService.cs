@@ -8,5 +8,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         IEnumerable<CommandReadDto> GetAllCommands();
 
         CommandReadDto GetCommandById(int id);
+
+        CommandReadDto CreateCommand(CommandCreateDto commandCreateDto);
     }
 }

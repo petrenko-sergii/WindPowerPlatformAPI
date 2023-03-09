@@ -22,17 +22,52 @@
 			"response": []
 		},
 		{
+			"name": "localhost:44350 - Create command",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"howTo\": \"Cleans the output of a project\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet clean\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44350/api/commands/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"commands",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:44350 - Get command",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000",
-					"protocol": "http",
+					"raw": "https://localhost:44350/api/commands/3",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5000"
+					"port": "44350",
+					"path": [
+						"api",
+						"commands",
+						"3"
+					]
 				}
 			},
 			"response": []
