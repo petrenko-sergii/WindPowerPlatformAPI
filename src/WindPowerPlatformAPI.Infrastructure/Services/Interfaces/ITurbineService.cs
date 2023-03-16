@@ -8,5 +8,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         IEnumerable<TurbineReadDto> GetAllTurbines();
 
         TurbineReadDto GetTurbineById(int id);
+
+        TurbineReadDto CreateTurbine(TurbineCreateDto turbineCreateDto);
     }
 }

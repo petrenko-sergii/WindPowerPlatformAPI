@@ -29,8 +29,19 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
         {
             var turbine = _repository.GetTurbineById(id);
 
-            //return _mapper.Map<Turbine, TurbineReadDto>(turbine);
             return _mapper.Map<TurbineReadDto>(turbine);
+        }
+
+        public TurbineReadDto CreateTurbine(TurbineCreateDto turbineCreateDto)
+        {
+            var turbineModel = _mapper.Map<Turbine>(turbineCreateDto);
+            _repository.CreateTurbine(turbineModel);
+            _repository.SaveChanges();
+
+            var createdTurbineId = _mapper.Map<TurbineReadDto>(turbineModel).Id;
+            var createdTurbine = GetTurbineById(createdTurbineId);
+
+            return createdTurbine;
         }
     }
 }

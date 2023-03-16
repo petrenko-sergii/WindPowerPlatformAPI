@@ -17,7 +17,12 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 
         public void CreateTurbine(Turbine turbine)
         {
-            throw new NotImplementedException();
+            if (turbine == null)
+            {
+                throw new ArgumentNullException(nameof(turbine));
+            }
+
+            _context.Turbines.Add(turbine);
         }
 
         public void DeleteTurbine(Turbine turbine)
@@ -37,7 +42,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges() >= 0;
         }
 
         public void UpdateTurbine(Turbine turbine)

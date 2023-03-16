@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
@@ -24,7 +25,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbines);
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("{id}", Name = "GetTurbineById")]
 		public ActionResult<TurbineReadDto> GetTurbineById(int id)
 		{
 			var turbine = _service.GetTurbineById(id);
@@ -35,6 +36,19 @@ namespace WindPowerPlatformAPI.App.Controllers
 			}
 
 			return Ok(turbine);
+		}
+
+		[HttpPost]
+		public ActionResult<TurbineReadDto> CreateTurbine(TurbineCreateDto turbineCreateDto)
+		{
+			if (turbineCreateDto == null)
+			{
+				throw new ArgumentNullException(nameof(turbineCreateDto));
+			}
+
+			var createdTurbine = _service.CreateTurbine(turbineCreateDto);
+
+			return CreatedAtRoute(nameof(GetTurbineById), new { Id = createdTurbine.Id }, createdTurbine);
 		}
 	}
 }
