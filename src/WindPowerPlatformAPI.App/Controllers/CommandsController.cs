@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
@@ -11,11 +13,13 @@ namespace WindPowerPlatformAPI.App.Controllers
 	public class CommandsController : ControllerBase
 	{
 		private readonly ICommandService _service;
+		private readonly IMapper _mapper;
 
-		public CommandsController(ICommandService service)
+		public CommandsController(ICommandService service, IMapper mapper)
         {
 			_service = service;
-        }
+			_mapper = mapper;
+		}
 
 		[HttpGet]
 		public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
@@ -49,6 +53,24 @@ namespace WindPowerPlatformAPI.App.Controllers
 			var createdCommand = _service.CreateCommand(commandCreateDto);
 
 			return CreatedAtRoute(nameof(GetCommandById), new { Id = createdCommand.Id }, createdCommand);
+		}
+
+
+		[HttpPut("{id}")]
+		public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
+		{
+			var commandModelFromRepo = _service.GetCommandById(id);
+			if (commandModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
+			_mapper.Map(commandUpdateDto, commandEntity);
+
+			_service.UpdateCommand(commandEntity);
+
+			return NoContent();
 		}
 	}
 }

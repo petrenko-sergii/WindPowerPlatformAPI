@@ -52,6 +52,36 @@
 			"response": []
 		},
 		{
+			"name": "localhost:44350 - Update command",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44350/api/commands/6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"commands",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:44350 - Create turbine",
 			"request": {
 				"method": "POST",
@@ -87,7 +117,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:44350/api/commands/3",
+					"raw": "https://localhost:44350/api/commands/6",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -96,7 +126,7 @@
 					"path": [
 						"api",
 						"commands",
-						"3"
+						"6"
 					]
 				}
 			},

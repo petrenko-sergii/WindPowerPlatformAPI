@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 {
@@ -48,7 +48,16 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 
         public void UpdateCommand(Command cmd)
         {
-            throw new NotImplementedException();
+            var local = _context.Set<Command>().Local.FirstOrDefault(entry => entry.Id.Equals(cmd.Id));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            _context.Entry(cmd).State = EntityState.Modified;
         }
     }
 }

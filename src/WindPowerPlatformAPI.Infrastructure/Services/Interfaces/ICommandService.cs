@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 
 namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
@@ -10,5 +11,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         CommandReadDto GetCommandById(int id);
 
         CommandReadDto CreateCommand(CommandCreateDto commandCreateDto);
+
+        void UpdateCommand(Command commandToUpdate);
     }
 }

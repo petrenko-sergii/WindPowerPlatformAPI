@@ -43,5 +43,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
 
             return createdCommand;
         }
+
+        public void UpdateCommand(Command commandToUpdate)
+        {
+            _repository.UpdateCommand(commandToUpdate);
+            _repository.SaveChanges();
+        }
     }
 }
