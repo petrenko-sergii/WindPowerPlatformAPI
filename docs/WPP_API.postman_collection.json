@@ -6,22 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "localhost:44350 - Get commands",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000"
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:44350 - Create command",
 			"request": {
 				"method": "POST",
@@ -76,6 +60,66 @@
 						"api",
 						"commands",
 						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:44350 - Delete command",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44350/api/commands/7",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"commands",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:44350 - Delete turbine",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44350/api/turbines/7",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"turbines",
+						"7"
 					]
 				}
 			},
@@ -197,6 +241,22 @@
 						"turbines",
 						""
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:44350 - Get commands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
 				}
 			},
 			"response": []

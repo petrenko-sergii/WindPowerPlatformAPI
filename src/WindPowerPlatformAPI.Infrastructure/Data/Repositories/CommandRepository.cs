@@ -26,11 +26,6 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
             _context.Commands.Add(cmd);
         }
 
-        public void DeleteCommand(Command cmd)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Command> GetAllCommands()
         {
             return _context.Commands.ToList();
@@ -58,6 +53,25 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
             }
             // set Modified flag in your entry
             _context.Entry(cmd).State = EntityState.Modified;
+        }
+
+        public void DeleteCommand(Command cmd)
+        {
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+
+            var local = _context.Set<Command>().Local.FirstOrDefault(entry => entry.Id.Equals(cmd.Id));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            _context.Entry(cmd).State = EntityState.Deleted;
         }
     }
 }

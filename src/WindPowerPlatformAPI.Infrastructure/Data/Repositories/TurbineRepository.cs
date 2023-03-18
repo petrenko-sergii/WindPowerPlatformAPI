@@ -26,11 +26,6 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
             _context.Turbines.Add(turbine);
         }
 
-        public void DeleteTurbine(Turbine turbine)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Turbine> GetAllTurbines()
         {
             return _context.Turbines.ToList();
@@ -58,6 +53,25 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
             }
             // set Modified flag in your entry
             _context.Entry(turbine).State = EntityState.Modified;
+        }
+
+        public void DeleteTurbine(Turbine cmd)
+        {
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+
+            var local = _context.Set<Turbine>().Local.FirstOrDefault(entry => entry.Id.Equals(cmd.Id));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            _context.Entry(cmd).State = EntityState.Deleted;
         }
     }
 }

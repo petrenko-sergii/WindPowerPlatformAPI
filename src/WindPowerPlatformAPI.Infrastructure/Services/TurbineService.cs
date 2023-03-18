@@ -49,5 +49,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
             _repository.UpdateTurbine(turbineToUpdate);
             _repository.SaveChanges();
         }
+
+        public void DeleteTurbine(Turbine turbineToDelete)
+        {
+            _repository.DeleteTurbine(turbineToDelete);
+            _repository.SaveChanges();
+        }
     }
 }

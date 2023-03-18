@@ -49,5 +49,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
             _repository.UpdateCommand(commandToUpdate);
             _repository.SaveChanges();
         }
+
+        public void DeleteCommand(Command commandToDelete)
+        {
+            _repository.DeleteCommand(commandToDelete);
+            _repository.SaveChanges();
+        }
     }
 }

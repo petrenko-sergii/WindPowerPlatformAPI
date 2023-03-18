@@ -13,5 +13,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         CommandReadDto CreateCommand(CommandCreateDto commandCreateDto);
 
         void UpdateCommand(Command commandToUpdate);
+
+        void DeleteCommand(Command commandToDelete);
     }
 }

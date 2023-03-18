@@ -13,5 +13,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         TurbineReadDto CreateTurbine(TurbineCreateDto turbineCreateDto);
 
         void UpdateTurbine(Turbine turbineToUpdate);
+
+        void DeleteTurbine(Turbine turbineToDelete);
     }
 }

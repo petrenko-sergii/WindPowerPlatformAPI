@@ -97,5 +97,20 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 			return NoContent();
 		}
+
+		[HttpDelete("{id}")]
+		public ActionResult DeleteTurbine(int id)
+		{
+			var turbineModelFromRepo = _service.GetTurbineById(id);
+			if (turbineModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var turbineEntity = _mapper.Map<Turbine>(turbineModelFromRepo);
+			_service.DeleteTurbine(turbineEntity);
+
+			return NoContent();
+		}
 	}
 }

@@ -98,5 +98,20 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 			return NoContent();
 		}
+
+		[HttpDelete("{id}")]
+		public ActionResult DeleteCommand(int id)
+        {
+			var commandModelFromRepo = _service.GetCommandById(id);
+			if (commandModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
+			_service.DeleteCommand(commandEntity);
+
+			return NoContent();
+		}
 	}
 }
