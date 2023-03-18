@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
@@ -67,6 +68,31 @@ namespace WindPowerPlatformAPI.App.Controllers
 			var turbineEntity = _mapper.Map<Turbine>(turbineModelFromRepo);
 			_mapper.Map(turbineUpdateDto, turbineEntity);
 
+			_service.UpdateTurbine(turbineEntity);
+
+			return NoContent();
+		}
+
+		[HttpPatch("{id}")]
+		public ActionResult PartialTurbineUpdate(int id, JsonPatchDocument<TurbineUpdateDto> patchDoc)
+		{
+			var turbineModelFromRepo = _service.GetTurbineById(id);
+			if (turbineModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var turbineEntity = _mapper.Map<Turbine>(turbineModelFromRepo);
+
+			var turbineToPatch = _mapper.Map<TurbineUpdateDto>(turbineEntity);
+			patchDoc.ApplyTo(turbineToPatch, ModelState);
+
+			if (!TryValidateModel(turbineToPatch))
+			{
+				return ValidationProblem(ModelState);
+			}
+
+			_mapper.Map(turbineToPatch, turbineEntity);
 			_service.UpdateTurbine(turbineEntity);
 
 			return NoContent();

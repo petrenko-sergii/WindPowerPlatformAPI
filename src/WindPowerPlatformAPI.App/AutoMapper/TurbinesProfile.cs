@@ -13,6 +13,7 @@ namespace WindPowerPlatformAPI.App.AutoMapper
             CreateMap<TurbineReadDto, Turbine>();
             CreateMap<TurbineCreateDto, Turbine>();
             CreateMap<TurbineUpdateDto, Turbine>();
+            CreateMap<Turbine, TurbineUpdateDto>();
         }
     }
 }

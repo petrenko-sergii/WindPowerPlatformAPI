@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,31 @@ namespace WindPowerPlatformAPI.App.Controllers
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
 			_mapper.Map(commandUpdateDto, commandEntity);
 
+			_service.UpdateCommand(commandEntity);
+
+			return NoContent();
+		}
+
+		[HttpPatch("{id}")]
+		public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
+		{
+			var commandModelFromRepo = _service.GetCommandById(id);
+			if (commandModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
+
+			var commandToPatch = _mapper.Map<CommandUpdateDto>(commandEntity);
+			patchDoc.ApplyTo(commandToPatch, ModelState);
+
+			if (!TryValidateModel(commandToPatch))
+			{
+				return ValidationProblem(ModelState);
+			}
+
+			_mapper.Map(commandToPatch, commandEntity);
 			_service.UpdateCommand(commandEntity);
 
 			return NoContent();

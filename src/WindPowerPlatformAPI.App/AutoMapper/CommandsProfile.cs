@@ -13,6 +13,7 @@ namespace WindPowerPlatformAPI.App.AutoMapper
             CreateMap<CommandReadDto, Command>();
             CreateMap<CommandCreateDto, Command>();
             CreateMap<CommandUpdateDto, Command>();
+            CreateMap<Command, CommandUpdateDto>();
         }
     }
 }

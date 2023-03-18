@@ -1,3 +1,4 @@
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
 using Npgsql;
-using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -37,7 +38,10 @@ namespace WindPowerPlatformAPI.App
                         opt.UseNpgsql(builder.ConnectionString, 
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             //services.AddAutoMapper(typeof(Startup));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
