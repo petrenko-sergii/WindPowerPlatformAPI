@@ -6,403 +6,413 @@
 	},
 	"item": [
 		{
-			"name": "localhost:44350 - Create command",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"howTo\": \"Cleans the output of a project\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet clean\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Command",
+			"item": [
+				{
+					"name": "localhost:44350 - Create command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"howTo\": \"Cleans the output of a project\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet clean\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/commands/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"commands",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/commands/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"commands",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Update command",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "localhost:44350 - Update command",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/commands/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"commands",
+								"6"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/commands/6",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"commands",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Delete command",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "localhost:44350 - Delete command",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/commands/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"commands",
+								"7"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/commands/7",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"commands",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Delete turbine",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "localhost:44350 - Update command partially",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/howTo\",\r\n        \"value\": \"Test descr from PATCH\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/commands/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"commands",
+								"6"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/turbines/7",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Update command partially",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/howTo\",\r\n        \"value\": \"Test descr from PATCH\"\r\n    }\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "localhost:44350 - Get commands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000"
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/commands/6",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"commands",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Update turbine partially",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/price\",\r\n        \"value\": 204500\r\n    }\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "localhost:44350 - Get command",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/commands/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"commands",
+								"6"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/turbines/5",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Update turbine",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 204000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "GET - commands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/commands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"commands"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/turbines/5",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Create turbine",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 203000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "GET - command/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/commands/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"commands",
+								"2"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44350/api/turbines/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines",
-						""
-					]
+				{
+					"name": "GET - commands - https",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/commands",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"commands"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "localhost:44350 - Get commands",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000"
+			"name": "Turbine",
+			"item": [
+				{
+					"name": "localhost:44350 - Delete turbine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"howTo\": \"Test descr\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Update turbine partially",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/price\",\r\n        \"value\": 204500\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Update turbine",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 204000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Create turbine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 203000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Get turbine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Get turbines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/turbines",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - turbines - https",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/turbines",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"turbines"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Get command",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44350/api/commands/6",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"commands",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Get turbine",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44350/api/turbines/2",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:44350 - Get turbines",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44350/api/turbines",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44350",
-					"path": [
-						"api",
-						"turbines"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET - commands",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/commands",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"commands"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET - command/id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/api/commands/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"commands",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET - commands - https",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/commands",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"commands"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET - turbines - https",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/turbines",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"turbines"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
