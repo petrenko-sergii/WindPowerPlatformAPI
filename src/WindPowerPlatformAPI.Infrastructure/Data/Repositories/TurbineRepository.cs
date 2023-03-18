@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WindPowerPlatformAPI.Domain.Entities;
@@ -47,7 +48,16 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 
         public void UpdateTurbine(Turbine turbine)
         {
-            throw new NotImplementedException();
+            var local = _context.Set<Turbine>().Local.FirstOrDefault(entry => entry.Id.Equals(turbine.Id));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            _context.Entry(turbine).State = EntityState.Modified;
         }
     }
 }

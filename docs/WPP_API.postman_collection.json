@@ -82,6 +82,36 @@
 			"response": []
 		},
 		{
+			"name": "localhost:44350 - Update turbine",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 204000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44350/api/turbines/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44350",
+					"path": [
+						"api",
+						"turbines",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:44350 - Create turbine",
 			"request": {
 				"method": "POST",

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
+using WindPowerPlatformAPI.Domain.Entities;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -11,11 +13,13 @@ namespace WindPowerPlatformAPI.App.Controllers
 	public class TurbinesController : ControllerBase
 	{
 		private readonly ITurbineService _service;
+		private readonly IMapper _mapper;
 
-		public TurbinesController(ITurbineService service)
+		public TurbinesController(ITurbineService service, IMapper mapper)
         {
 			_service = service;
-        }
+			_mapper = mapper;
+		}
 
 		[HttpGet]
 		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines()
@@ -49,6 +53,23 @@ namespace WindPowerPlatformAPI.App.Controllers
 			var createdTurbine = _service.CreateTurbine(turbineCreateDto);
 
 			return CreatedAtRoute(nameof(GetTurbineById), new { Id = createdTurbine.Id }, createdTurbine);
+		}
+
+		[HttpPut("{id}")]
+		public ActionResult UpdateTurbine(int id, TurbineUpdateDto turbineUpdateDto)
+		{
+			var turbineModelFromRepo = _service.GetTurbineById(id);
+			if (turbineModelFromRepo == null)
+			{
+				return NotFound();
+			}
+
+			var turbineEntity = _mapper.Map<Turbine>(turbineModelFromRepo);
+			_mapper.Map(turbineUpdateDto, turbineEntity);
+
+			_service.UpdateTurbine(turbineEntity);
+
+			return NoContent();
 		}
 	}
 }

@@ -43,5 +43,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
 
             return createdTurbine;
         }
+
+        public void UpdateTurbine(Turbine turbineToUpdate)
+        {
+            _repository.UpdateTurbine(turbineToUpdate);
+            _repository.SaveChanges();
+        }
     }
 }
