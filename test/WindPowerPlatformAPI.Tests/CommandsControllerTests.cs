@@ -148,6 +148,36 @@ namespace WindPowerPlatformAPI.Tests
             Assert.IsType<ActionResult<CommandReadDto>>(result);
         }
 
+        [Fact]
+        public void CreateCommand_WhenValidObjectSubmitted_ReturnsCorrectResponse()
+        {
+            //Arrange 
+            var commandCreateDto = new CommandCreateDto()
+            {
+                HowTo = "mock",
+                Platform = "Mock",
+                CommandLine = "Mock"
+            };
+
+            mockService.Setup(svc => svc.CreateCommand(commandCreateDto))
+                .Returns(new CommandReadDto
+                {
+                    Id = 5,
+                    HowTo = "mock",
+                    Platform = "Mock",
+                    CommandLine = "Mock"
+                });
+
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.CreateCommand(commandCreateDto);
+
+            //Assert
+            Assert.IsType<ActionResult<CommandReadDto>>(result);
+            Assert.IsType<CreatedAtRouteResult>(result.Result);
+        }
+
         private List<CommandReadDto> GetCommands(int num)
         {
             var commands = new List<CommandReadDto>();
