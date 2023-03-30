@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Moq;
-using AutoMapper;
-using WindPowerPlatformAPI.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using WindPowerPlatformAPI.App.Controllers;
-using WindPowerPlatformAPI.Infrastructure.Data;
-using Xunit;
-using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.App.AutoMapper;
+using Xunit;
 
 namespace WindPowerPlatformAPI.Tests
 {
@@ -96,7 +91,6 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-
             var controller = new CommandsController(mockService.Object, mapper);
            
             //Act
@@ -176,6 +170,94 @@ namespace WindPowerPlatformAPI.Tests
             //Assert
             Assert.IsType<ActionResult<CommandReadDto>>(result);
             Assert.IsType<CreatedAtRouteResult>(result.Result);
+        }
+
+        [Fact]
+        public void UpdateCommand_WhenValidObjectSubmitted_Returns204NoContent()
+        {
+            //Arrange 
+            mockService.Setup(svc => svc.GetCommandById(1))
+                .Returns(new CommandReadDto
+                {
+                    Id = 1,
+                    HowTo = "mock",
+                    Platform = "Mock",
+                    CommandLine = "Mock"
+                });
+
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.UpdateCommand(1, new CommandUpdateDto { });
+
+            //Assert
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public void UpdateCommand_WhenNonExistentResourceIDSubmitted_Returns404NotFound()
+        {
+            //Arrange 
+            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
+
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.UpdateCommand(0, new CommandUpdateDto { });
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public void PartialCommandUpdate_WhenNonExistentResourceIDSubmitted_Returns404NotFound()
+        {
+            //Arrange 
+            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
+
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.PartialCommandUpdate(0, new Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<CommandUpdateDto> { });
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public void DeleteCommand_WhenValidResourceIDSubmitted_Returns200OK()
+        {
+            //Arrange 
+            mockService.Setup(svc => svc.GetCommandById(1))
+                    .Returns(new CommandReadDto
+                    {
+                        Id = 1,
+                        HowTo = "mock",
+                        Platform = "Mock",
+                        CommandLine = "Mock"
+                    });
+
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.DeleteCommand(1);
+
+            //Assert
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public void DeleteCommand_WhenNonExistentResourceIDSubmitted_Returns_404NotFound()
+        {
+            //Arrange 
+            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
+            var controller = new CommandsController(mockService.Object, mapper);
+
+            //Act
+            var result = controller.DeleteCommand(0);
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
         }
 
         private List<CommandReadDto> GetCommands(int num)
