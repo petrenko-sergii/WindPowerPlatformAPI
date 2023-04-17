@@ -79,8 +79,7 @@ namespace WindPowerPlatformAPI.Tests
             var result = controller.GetAllTurbines();
 
             //Assert
-            //Assert.IsType<OkObjectResult>(result.Result);
-            Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<OkObjectResult>(result.Result);
         }
 
         [Fact]
