@@ -16,11 +16,11 @@ steps:
 - task: UseDotNet@2
 - script: dotnet build --configuration $(buildConfiguration) 
   displayName: 'dotnet build $(buildConfiguration)'
-- task: DotNetCoreInstaller@1
-  displayName: 'install .NET Core SDK'
+- task: DotNetCoreCLI@2
   inputs:
-    packageType: 'sdk'
-    version: '3.1.x'
+    command: 'restore'
+    feedsToUse: 'select'
+    vstsFeed: 'my-vsts-feed' # A series of numbers and letters
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
