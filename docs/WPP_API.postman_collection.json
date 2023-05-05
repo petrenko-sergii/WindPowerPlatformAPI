@@ -413,6 +413,117 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Azure",
+			"item": [
+				{
+					"name": "wppapi-AZURE: Create turbine",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\": \"SG 2.1-122\",\r\n    \"price\": 203000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines/",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"turbines",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: Create command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"howTo\": \"Cleans the output of a project\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet clean\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/commands/",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"commands",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: Get commands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/commands/",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"commands",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: Get turbines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines/",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"turbines",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
