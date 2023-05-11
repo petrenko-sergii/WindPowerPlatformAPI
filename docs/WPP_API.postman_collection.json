@@ -441,7 +441,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzNzg4NjEwLCJuYmYiOjE2ODM3ODg2MTAsImV4cCI6MTY4Mzc5MjUxMCwiYWlvIjoiRTJaZ1lPaTl1S2N0WFg3enhQTGsxencvNC90REFBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiZG9pdHE4RDllRS1iN2RIaHdva0ZBQSIsInZlciI6IjEuMCJ9.jZmPerKguFRhLfYICpHTShcZ0FCHl8lDPyvOQ1RP0yx5HaTCE2kULq1-zWdo_3aX5wy4xqkGXC8H63ptBgtmm3xrSwxpfZRa1uc_ZHOU2DKOWxkkZK8yEVH4rHMljs5BaiAq4punsMf6hKc17C_Gn8zOdg_aplcgmRXmjr7BWyFOsAoemOfOGMms3IH87kmPzZl3VBaIaGnyRpuQhpntyyJa4WoszpZWuVYywW-kkJEZXdDDAWbYipMG_IXW5DQqSKIFIQH-8VUU6IRGIxf82jqi1etDiNnWhVo2uyBO9kbuMUoRbPpqEIOBBfPFeiFj5MD8DpllJgimPAh6f0jACg",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzNzk0OTkxLCJuYmYiOjE2ODM3OTQ5OTEsImV4cCI6MTY4Mzc5ODg5MSwiYWlvIjoiRTJaZ1lCRGpVNXd5dVZ2cGM3dDFnT0VxRnpWYkFBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiQ1IwMWdXUldWMDI5X25ZVmNSb2ZBQSIsInZlciI6IjEuMCJ9.BbZJjMwhsR5j0t3nC1WrYgeO_A4aUVll7iYUxc6sO_jzXlr1qgwRA1_g7jKUK9ZCeJyThc0AZsMl53C1tO9YSkx0T7nOHm19gFKg7SweSroxr6r71wtceZHEdaddJ8Bfc_2wnPm_3F0pbEzQng3lA05UJM-pkD2q-n_K_7db4TYmv0GoQzrY7kri6nu2xE7_H3PEmOcSM-anOUJk7ZUWMEHWKkeYDJocww-_hTd7X5Vni-prs2QRBXVQu6jbSSm_AUuLK-J_W25yRjNER-RhD8u-3fNIB1sag92i2TP0Yh1Guiu9dsRAYwRmnnbHVYGLOJg2WdWFU5CMYaE6szYc5A",
 									"type": "string"
 								}
 							]
@@ -507,7 +507,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"howTo\": \"Cleans the output of a project\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet clean\"\r\n}",
+							"raw": "{\r\n    \"howTo\": \"Create an EF migration\",\r\n    \"platform\": \"Entity Framework Core Command Line\",\r\n    \"commandLine\": \"dotnet ef migrations add\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -554,6 +554,38 @@
 					"response": []
 				},
 				{
+					"name": "wppapi-AZURE: Get command + JWT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly83NDNmMjU3MS1iM2UwLTRmYzItOWNiOC0zMzcwYmQwYzdkYjEiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzODEzMTE1LCJuYmYiOjE2ODM4MTMxMTUsImV4cCI6MTY4MzgxNzAxNSwiYWlvIjoiRTJaZ1lGalk3aFZ6a2xsYTJYbi9YZkdqQmVjVEFRPT0iLCJhcHBpZCI6ImY3N2ExYWQ0LTdmMjYtNDhhZS05ZGQxLWU0YTFkMzU2MTU4YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiI4MWUxNjY1ZS1hM2RhLTRmMGItYjllMC0yYjYyNjE5ODAxMDIiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MW5FbFAzVGdzOEpQbkxnemNMME1mYkZ6QUFBLiIsInN1YiI6IjgxZTE2NjVlLWEzZGEtNGYwYi1iOWUwLTJiNjI2MTk4MDEwMiIsInRpZCI6IjIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNiIsInV0aSI6InJIa29aRDhfOUVtZjdBcmdwWmtVQUEiLCJ2ZXIiOiIxLjAifQ.YRv6T0Z8Qd_3NRoZJS_aoIqdM1PyszvWrDnrnUV4nbI_iQgytl0E8qGl6iVaPI-cN9WwSnOC_5Qh93uNfs9YDz8OpJEFqY-2RB1HS8krcJQGztSM-95wPqwsPhaH-cGNy2qNCc0qZFqwJnCaOh8oikYDXXfMmOBhBOOZBQwH8Hkhr__ESWm62dWxycWI6yyNFrTBrSzs-I7LeC0EAwbY9BHcqqLPLY_Xy2vEMeX66YH0iOd12WMUlXODpR0IZYjJGkiTUQjgRqPOF0lDhuKPBOEmyx1AB3RW9f3TY-jxMK7hH8OCPttt7uazSc8xUEsRqd2Ew52JXNXfkvNYH6OAJw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/commands/1",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"commands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "wppapi-AZURE: Get turbines",
 					"request": {
 						"method": "GET",
@@ -569,6 +601,38 @@
 							"path": [
 								"api",
 								"turbines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: Get turbine + JWT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly83NDNmMjU3MS1iM2UwLTRmYzItOWNiOC0zMzcwYmQwYzdkYjEiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzODEzMTE1LCJuYmYiOjE2ODM4MTMxMTUsImV4cCI6MTY4MzgxNzAxNSwiYWlvIjoiRTJaZ1lGalk3aFZ6a2xsYTJYbi9YZkdqQmVjVEFRPT0iLCJhcHBpZCI6ImY3N2ExYWQ0LTdmMjYtNDhhZS05ZGQxLWU0YTFkMzU2MTU4YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiI4MWUxNjY1ZS1hM2RhLTRmMGItYjllMC0yYjYyNjE5ODAxMDIiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MW5FbFAzVGdzOEpQbkxnemNMME1mYkZ6QUFBLiIsInN1YiI6IjgxZTE2NjVlLWEzZGEtNGYwYi1iOWUwLTJiNjI2MTk4MDEwMiIsInRpZCI6IjIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNiIsInV0aSI6InJIa29aRDhfOUVtZjdBcmdwWmtVQUEiLCJ2ZXIiOiIxLjAifQ.YRv6T0Z8Qd_3NRoZJS_aoIqdM1PyszvWrDnrnUV4nbI_iQgytl0E8qGl6iVaPI-cN9WwSnOC_5Qh93uNfs9YDz8OpJEFqY-2RB1HS8krcJQGztSM-95wPqwsPhaH-cGNy2qNCc0qZFqwJnCaOh8oikYDXXfMmOBhBOOZBQwH8Hkhr__ESWm62dWxycWI6yyNFrTBrSzs-I7LeC0EAwbY9BHcqqLPLY_Xy2vEMeX66YH0iOd12WMUlXODpR0IZYjJGkiTUQjgRqPOF0lDhuKPBOEmyx1AB3RW9f3TY-jxMK7hH8OCPttt7uazSc8xUEsRqd2Ew52JXNXfkvNYH6OAJw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines/2",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"turbines",
+								"2"
 							]
 						}
 					},
