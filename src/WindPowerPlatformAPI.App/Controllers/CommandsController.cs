@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,8 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(commands);
 		}
 
-		[HttpGet("{id}", Name="GetCommandById")]
+        [Authorize]
+        [HttpGet("{id}", Name="GetCommandById")]
 		public ActionResult<CommandReadDto> GetCommandById(int id)
 		{
 			var command = _service.GetCommandById(id);

@@ -411,6 +411,58 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET - turbine - https",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/turbines/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"turbines",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - turbine - https + token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzNzg4NjEwLCJuYmYiOjE2ODM3ODg2MTAsImV4cCI6MTY4Mzc5MjUxMCwiYWlvIjoiRTJaZ1lPaTl1S2N0WFg3enhQTGsxencvNC90REFBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiZG9pdHE4RDllRS1iN2RIaHdva0ZBQSIsInZlciI6IjEuMCJ9.jZmPerKguFRhLfYICpHTShcZ0FCHl8lDPyvOQ1RP0yx5HaTCE2kULq1-zWdo_3aX5wy4xqkGXC8H63ptBgtmm3xrSwxpfZRa1uc_ZHOU2DKOWxkkZK8yEVH4rHMljs5BaiAq4punsMf6hKc17C_Gn8zOdg_aplcgmRXmjr7BWyFOsAoemOfOGMms3IH87kmPzZl3VBaIaGnyRpuQhpntyyJa4WoszpZWuVYywW-kkJEZXdDDAWbYipMG_IXW5DQqSKIFIQH-8VUU6IRGIxf82jqi1etDiNnWhVo2uyBO9kbuMUoRbPpqEIOBBfPFeiFj5MD8DpllJgimPAh6f0jACg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/turbines/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"turbines",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -507,7 +559,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines/",
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines",
 							"protocol": "https",
 							"host": [
 								"windpowerplatformapi",
@@ -516,8 +568,7 @@
 							],
 							"path": [
 								"api",
-								"turbines",
-								""
+								"turbines"
 							]
 						}
 					},

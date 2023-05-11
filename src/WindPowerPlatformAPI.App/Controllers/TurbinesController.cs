@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
@@ -30,6 +31,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbines);
 		}
 
+		[Authorize]
 		[HttpGet("{id}", Name = "GetTurbineById")]
 		public ActionResult<TurbineReadDto> GetTurbineById(int id)
 		{

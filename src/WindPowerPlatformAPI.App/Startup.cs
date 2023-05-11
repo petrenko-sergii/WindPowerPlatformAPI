@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,13 @@ namespace WindPowerPlatformAPI.App
                         opt.UseNpgsql(builder.ConnectionString, 
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.Audience = Configuration["ResourceId"];
+                    opt.Authority = $"{Configuration["Instance"]}{Configuration["TenantId"]}";
+                });
+
             services.AddControllers().AddNewtonsoftJson(s =>
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -59,6 +67,9 @@ namespace WindPowerPlatformAPI.App
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
