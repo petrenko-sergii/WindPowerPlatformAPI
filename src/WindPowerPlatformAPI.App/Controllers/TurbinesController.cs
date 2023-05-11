@@ -31,7 +31,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbines);
 		}
 
-		//[Authorize]
+		[Authorize]
 		[HttpGet("{id}", Name = "GetTurbineById")]
 		public ActionResult<TurbineReadDto> GetTurbineById(int id)
 		{
