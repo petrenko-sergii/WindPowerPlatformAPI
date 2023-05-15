@@ -554,6 +554,41 @@
 					"response": []
 				},
 				{
+					"name": "wppapi-AZURE: Use \"TestSum\" Function",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wppapi-desc-formatter-func.azurewebsites.net/api/TestSum?code=JISFeawLBnym7TM-j7e---function-key---mAzFuAmFyog==&x=50&y=42",
+							"protocol": "https",
+							"host": [
+								"wppapi-desc-formatter-func",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"TestSum"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "JISFeawLBnym7TM-j7e---function-key---mAzFuAmFyog=="
+								},
+								{
+									"key": "x",
+									"value": "50"
+								},
+								{
+									"key": "y",
+									"value": "42"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "wppapi-AZURE: Get command + JWT",
 					"request": {
 						"auth": {
