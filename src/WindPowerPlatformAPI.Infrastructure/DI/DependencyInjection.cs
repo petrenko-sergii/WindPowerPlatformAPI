@@ -21,6 +21,9 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
         {
             services.AddScoped<ICommandService, CommandService>();
             services.AddScoped<ITurbineService, TurbineService>();
+            services.AddScoped<ICloudFuncService, CloudFuncService>();
+            services.AddScoped<IHttpClientService, HttpClientService>();
+            services.AddScoped<ICloudFuncUrlBuilderService, CloudFuncUrlBuilderService>();
         }
 
         private static void AddRepositories(IServiceCollection services)

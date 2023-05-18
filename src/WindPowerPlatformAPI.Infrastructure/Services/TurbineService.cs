@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
@@ -10,11 +11,13 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
     public class TurbineService : ITurbineService
     {
         private readonly ITurbineRepository _repository;
+        private readonly ICloudFuncService _funcService;
         private readonly IMapper _mapper;
 
-        public TurbineService(ITurbineRepository repository, IMapper mapper)
+        public TurbineService(ITurbineRepository repository, ICloudFuncService funcService, IMapper mapper)
         {
             _repository = repository;
+            _funcService = funcService;
             _mapper = mapper;
         }
 
@@ -54,6 +57,17 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
         {
             _repository.DeleteTurbine(turbineToDelete);
             _repository.SaveChanges();
+        }
+
+        public async Task<string> GetFormattedDescriptionById(int id, string functionKey)
+        {
+            var turbine = _repository.GetTurbineById(id);
+
+            var turbineDto = _mapper.Map<TurbineReadDto>(turbine);
+
+            var formattedDescription = await _funcService.GetFormattedTurbineDescription(turbineDto, functionKey);
+
+            return formattedDescription;
         }
     }
 }

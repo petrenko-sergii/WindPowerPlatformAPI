@@ -43,7 +43,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(0));
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetAllTurbines();
@@ -57,7 +57,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetAllTurbines();
@@ -73,7 +73,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetAllTurbines();
@@ -87,7 +87,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetAllTurbines();
@@ -101,7 +101,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetTurbineById(0)).Returns(() => null);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetTurbineById(1);
@@ -116,7 +116,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange
             mockService.Setup(svc => svc.GetTurbineById(1))
                 .Returns(testTurbineReadDto);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetTurbineById(1);
@@ -131,7 +131,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange
             mockService.Setup(svc => svc.GetTurbineById(1))
                 .Returns(testTurbineReadDto);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.GetTurbineById(1);
@@ -158,7 +158,7 @@ namespace WindPowerPlatformAPI.Tests
                     Price = 100
                 });
 
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.CreateTurbine(turbineCreateDto);
@@ -175,7 +175,7 @@ namespace WindPowerPlatformAPI.Tests
             mockService.Setup(svc => svc.GetTurbineById(1))
                 .Returns(testTurbineReadDto);
 
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.UpdateTurbine(1, new TurbineUpdateDto { });
@@ -189,7 +189,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange 
             mockService.Setup(svc => svc.GetTurbineById(0)).Returns(() => null);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.UpdateTurbine(0, new TurbineUpdateDto { });
@@ -203,7 +203,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange 
             mockService.Setup(svc => svc.GetTurbineById(0)).Returns(() => null);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.PartialTurbineUpdate(0, new Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TurbineUpdateDto> { });
@@ -219,7 +219,7 @@ namespace WindPowerPlatformAPI.Tests
             mockService.Setup(svc => svc.GetTurbineById(1))
                     .Returns(testTurbineReadDto);
 
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.DeleteTurbine(1);
@@ -233,7 +233,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange 
             mockService.Setup(svc => svc.GetTurbineById(0)).Returns(() => null);
-            var controller = new TurbinesController(mockService.Object, mapper);
+            var controller = new TurbinesController(mockService.Object, mapper, null);
 
             //Act
             var result = controller.DeleteTurbine(0);

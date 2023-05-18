@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Domain.Entities;
@@ -16,11 +18,13 @@ namespace WindPowerPlatformAPI.App.Controllers
 	{
 		private readonly ITurbineService _service;
 		private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-		public TurbinesController(ITurbineService service, IMapper mapper)
+        public TurbinesController(ITurbineService service, IMapper mapper, IConfiguration configuration)
         {
 			_service = service;
 			_mapper = mapper;
+			_configuration = configuration;
 		}
 
 		[HttpGet]
@@ -45,7 +49,22 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbine);
 		}
 
-		[HttpPost]
+        [Authorize]
+        [HttpGet("{id}/format-description", Name = "GetFormattedDescriptionById")]
+        public async Task<ActionResult<string>> GetFormattedDescriptionById(int id)
+        {
+            var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
+            var formattedDescription =  await _service.GetFormattedDescriptionById(id, funcKey);
+
+			if(formattedDescription == null)
+            {
+				return NotFound();
+            }
+
+            return Ok(formattedDescription);
+        }
+
+        [HttpPost]
 		public ActionResult<TurbineReadDto> CreateTurbine(TurbineCreateDto turbineCreateDto)
 		{
 			if (turbineCreateDto == null)
