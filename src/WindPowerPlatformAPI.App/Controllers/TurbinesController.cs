@@ -55,21 +55,21 @@ namespace WindPowerPlatformAPI.App.Controllers
         public async Task<ActionResult<string>> GetFormattedDescriptionById(int id)
         {
             var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
+			var funcApp = "Azure Function App";
             var formattedDescription =  await _service.GetFormattedDescriptionById(id, funcKey);
 
-			if(string.IsNullOrEmpty(formattedDescription))
+            if (string.IsNullOrEmpty(formattedDescription))
             {
 				return NotFound();
-            }
-
-			if(formattedDescription == HttpStatusCode.NotFound.ToString())
+            } else if(formattedDescription == HttpStatusCode.NotFound.ToString())
 			{
-				return BadRequest("Azure Function App \"TurbineDescFormatter\" is turned off or broken");
-            }
-
-			if(formattedDescription == HttpStatusCode.BadRequest.ToString())
+				return BadRequest($"{funcApp} \"TurbineDescFormatter\" is turned off or broken");
+            } else if(formattedDescription == HttpStatusCode.BadRequest.ToString())
 			{
-                return BadRequest("Error happened during usage of Azure Function App \"TurbineDescFormatter\"");
+                return BadRequest($"Error happened during usage of {funcApp} \"TurbineDescFormatter\"");
+            } else if (formattedDescription.Contains("Error"))
+			{
+                return BadRequest($"{formattedDescription} -- happened during usage of {funcApp} \"TurbineDescFormatter\".");
             }
 
             return Ok(formattedDescription);

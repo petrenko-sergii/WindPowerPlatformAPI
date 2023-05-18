@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
@@ -23,25 +24,31 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
             var functionUrl = _funcUrlBuilderService.CreateTurbineDescFormatterUrl(functionKey);
             var functionUrlWithParams = string.Format(functionUrl, turbine.SerialNumber, turbine.Price);
 
-            HttpResponseMessage response = await httpClient.GetAsync(functionUrlWithParams);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string result = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = await httpClient.GetAsync(functionUrlWithParams);
 
-                if (result.Contains("\\"))
+                if (response.IsSuccessStatusCode)
                 {
-                    result = result.Replace("\\", "");
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    if (result.Contains("\\"))
+                    {
+                        result = result.Replace("\\", "");
+                    }
+
+                    return result;
+                } else if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return HttpStatusCode.NotFound.ToString();
                 }
 
-                return result;
-            } 
-            else if(response.StatusCode == HttpStatusCode.NotFound)
-            {
-                return HttpStatusCode.NotFound.ToString();
+                return HttpStatusCode.BadRequest.ToString();
             }
-
-            return HttpStatusCode.BadRequest.ToString();
+            catch(Exception ex)
+            {
+                return $"Error: {ex.Message}";
+            }
         }
     }
 }
