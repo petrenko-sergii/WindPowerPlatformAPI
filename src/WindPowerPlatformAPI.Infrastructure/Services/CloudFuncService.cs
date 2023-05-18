@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
@@ -34,9 +35,13 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
                 }
 
                 return result;
+            } 
+            else if(response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return HttpStatusCode.NotFound.ToString();
             }
 
-            return "Error happened during Azure function call.";
+            return HttpStatusCode.BadRequest.ToString();
         }
     }
 }

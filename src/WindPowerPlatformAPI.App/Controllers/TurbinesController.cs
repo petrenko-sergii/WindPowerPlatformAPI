@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Domain.Entities;
+using System.Net;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -56,9 +57,19 @@ namespace WindPowerPlatformAPI.App.Controllers
             var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
             var formattedDescription =  await _service.GetFormattedDescriptionById(id, funcKey);
 
-			if(formattedDescription == null)
+			if(string.IsNullOrEmpty(formattedDescription))
             {
 				return NotFound();
+            }
+
+			if(formattedDescription == HttpStatusCode.NotFound.ToString())
+			{
+				return BadRequest("Azure Function App \"TurbineDescFormatter\" is turned off or broken");
+            }
+
+			if(formattedDescription == HttpStatusCode.BadRequest.ToString())
+			{
+                return BadRequest("Error happened during usage of Azure Function App \"TurbineDescFormatter\"");
             }
 
             return Ok(formattedDescription);

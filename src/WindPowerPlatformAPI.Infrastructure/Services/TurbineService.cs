@@ -63,6 +63,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
         {
             var turbine = _repository.GetTurbineById(id);
 
+            if(turbine == null)
+            {
+                return "";
+            }
+
             var turbineDto = _mapper.Map<TurbineReadDto>(turbine);
 
             var formattedDescription = await _funcService.GetFormattedTurbineDescription(turbineDto, functionKey);
