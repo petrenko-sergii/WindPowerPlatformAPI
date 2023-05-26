@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WindPowerPlatformAPI.App.Middleware;
 using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
 using Npgsql;
@@ -45,6 +46,23 @@ namespace WindPowerPlatformAPI.App
                     opt.Authority = $"{Configuration["Instance"]}{Configuration["TenantId"]}";
                 });
 
+            services.AddSingleton<BlockAnonymousMiddleware>();
+            services.AddSingleton<SecurityHeadersMiddleware>();
+            services.AddSingleton<BlockCrossSiteScriptingMiddleware>();
+
+            var test = Configuration["AllowedOrigins"];
+
+            services.AddCors(options => options
+                .AddDefaultPolicy(
+                    builder => builder
+                        .WithOrigins(Configuration["AllowedOrigins"]?
+                            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                            .Select(x => x.Trim())
+                            .ToArray() ?? new string[0])
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()));
+
             services.AddControllers().AddNewtonsoftJson(s =>
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -64,9 +82,16 @@ namespace WindPowerPlatformAPI.App
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            } else
+            {
+                app.UseMiddleware<BlockAnonymousMiddleware>();
             }
 
             app.UseRouting();
+
+            app.UseMiddleware<SecurityHeadersMiddleware>();
+            app.UseMiddleware<BlockCrossSiteScriptingMiddleware>();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
