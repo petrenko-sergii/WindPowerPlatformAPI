@@ -50,8 +50,6 @@ namespace WindPowerPlatformAPI.App
             services.AddSingleton<SecurityHeadersMiddleware>();
             services.AddSingleton<BlockCrossSiteScriptingMiddleware>();
 
-            var test = Configuration["AllowedOrigins"];
-
             services.AddCors(options => options
                 .AddDefaultPolicy(
                     builder => builder
