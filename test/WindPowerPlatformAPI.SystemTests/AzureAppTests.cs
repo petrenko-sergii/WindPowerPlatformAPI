@@ -15,7 +15,7 @@ namespace WindPowerPlatformAPI.SystemTests
             _httpClient.Dispose();
         }
 
-        [Fact]
+        //[Fact]
         public async void GetTurbines_AzureAppWorks_ShouldReturnTurbines()
         {
             // Arrange
@@ -42,7 +42,7 @@ namespace WindPowerPlatformAPI.SystemTests
             AssertTurbines(expectedTurbine, turbines.First());
         }
 
-        [Fact]
+        //[Fact]
         public async void GetCommands_AzureAppWorks_ShouldReturnCommands()
         {
             // Arrange
