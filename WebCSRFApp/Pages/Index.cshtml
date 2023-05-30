@@ -9,9 +9,11 @@
         const request = new XMLHttpRequest();
         request.withCredentials = true;
         request.open('post', 'https://localhost:44350/api/turbines/');
-        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');  // worked
-        let test = JSON.stringify({ "SerialNumber": "SG 2.1-122", "Price": 204500 });
-        request.send(test);
+        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+        const jsonBody = JSON.stringify({ "SerialNumber": "SG 2.1-122", "Price": 204500 });
+        
+        request.send(jsonBody);
     }
 </script>
 

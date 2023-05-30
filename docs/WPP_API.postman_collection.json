@@ -352,12 +352,22 @@
 					"response": []
 				},
 				{
-					"name": "localhost:44350 - Get turbine",
+					"name": "localhost:44350 - Get turbine + token",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0NDE3NjYzLCJuYmYiOjE2ODQ0MTc2NjMsImV4cCI6MTY4NDQyMTU2MywiYWlvIjoiRTJaZ1lNaVo1dm9wOWx0czFHMkd0M3Jjb1N5Q0FBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoibnVScWhXRmpZVVNheHlPQXZoTU9BQSIsInZlciI6IjEuMCJ9.jXZbbTB0tGB7vUSM-PLDF1eo5e2f6P0B6vgRGBjDPojtgh1OQrdnbSfHDXU0ECYg3NYXh8XCeDnFUWjJIidV8Df_FXV2ovGt0xsF07OPyJy6NJvZrmMmR1hDcGIAd2s91ZyN5tKxCfFecLq-3ussh_x9F-1qXBho6cRtOuSdYrV4aHwrPkEL_LYiI4rlu54HwoPdULy2gGdtGrdmBkILZTvQaTUQOr96rV7k6A9IYKASms3ZMCAMUhtKZx0iqlXi7ep62vXeT6FqJL9srvgwswbthfkIHFb_vYC8aRkZA0pWNZGZknYpN14lm1PiWeJZhjW_jqz2hMWlbpESUrqU9g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44350/api/turbines/2",
+							"raw": "https://localhost:44350/api/turbines/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -366,7 +376,39 @@
 							"path": [
 								"api",
 								"turbines",
-								"2"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Get turbine descr + Azure + token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0NDE3NjYzLCJuYmYiOjE2ODQ0MTc2NjMsImV4cCI6MTY4NDQyMTU2MywiYWlvIjoiRTJaZ1lNaVo1dm9wOWx0czFHMkd0M3Jjb1N5Q0FBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoibnVScWhXRmpZVVNheHlPQXZoTU9BQSIsInZlciI6IjEuMCJ9.jXZbbTB0tGB7vUSM-PLDF1eo5e2f6P0B6vgRGBjDPojtgh1OQrdnbSfHDXU0ECYg3NYXh8XCeDnFUWjJIidV8Df_FXV2ovGt0xsF07OPyJy6NJvZrmMmR1hDcGIAd2s91ZyN5tKxCfFecLq-3ussh_x9F-1qXBho6cRtOuSdYrV4aHwrPkEL_LYiI4rlu54HwoPdULy2gGdtGrdmBkILZTvQaTUQOr96rV7k6A9IYKASms3ZMCAMUhtKZx0iqlXi7ep62vXeT6FqJL9srvgwswbthfkIHFb_vYC8aRkZA0pWNZGZknYpN14lm1PiWeJZhjW_jqz2hMWlbpESUrqU9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/2/format-description",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"2",
+								"format-description"
 							]
 						}
 					},
@@ -441,7 +483,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzNzk0OTkxLCJuYmYiOjE2ODM3OTQ5OTEsImV4cCI6MTY4Mzc5ODg5MSwiYWlvIjoiRTJaZ1lCRGpVNXd5dVZ2cGM3dDFnT0VxRnpWYkFBPT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiQ1IwMWdXUldWMDI5X25ZVmNSb2ZBQSIsInZlciI6IjEuMCJ9.BbZJjMwhsR5j0t3nC1WrYgeO_A4aUVll7iYUxc6sO_jzXlr1qgwRA1_g7jKUK9ZCeJyThc0AZsMl53C1tO9YSkx0T7nOHm19gFKg7SweSroxr6r71wtceZHEdaddJ8Bfc_2wnPm_3F0pbEzQng3lA05UJM-pkD2q-n_K_7db4TYmv0GoQzrY7kri6nu2xE7_H3PEmOcSM-anOUJk7ZUWMEHWKkeYDJocww-_hTd7X5Vni-prs2QRBXVQu6jbSSm_AUuLK-J_W25yRjNER-RhD8u-3fNIB1sag92i2TP0Yh1Guiu9dsRAYwRmnnbHVYGLOJg2WdWFU5CMYaE6szYc5A",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0MzI1MDIzLCJuYmYiOjE2ODQzMjUwMjMsImV4cCI6MTY4NDMyODkyMywiYWlvIjoiRTJaZ1lDaXpkdUczUGVaejdXci9tVStMd2c3bUF3QT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiRHJ3ZHVCN2lYRVcwSk8yNG1XZ0NBQSIsInZlciI6IjEuMCJ9.akDnH8Xs9Cw00g-hj5cuCt5kYkV-sm6IoKFWdDQL7CrhqaQdyilImwwYw5q5MPHyNDpSugFuHg9z1Yzcb6DyXG5ZS5fP_Gwica2ph5f1etJYuxrW8qZCAv65A5rfimZeyNCEiH_23k8Ha9y48k29T-rGhsEpK5QV9MqCgMIfA7aZ_c08NCr2sMPiDSKOnsem_wwGVb8ZV3F0529MvTUeDA4HHPUzdTJBjU8paEApPuxcZbpZUwdLx0wlAV_iUoyfmneqKsrQ7UwDOQ2iwwaUA487oNJU2nW1owe-GEGyHuWw40WEHJBv_V2Eb33wUbkYGQNL2TccQVpVSNyMOzAc5w",
 									"type": "string"
 								}
 							]
@@ -459,6 +501,38 @@
 								"api",
 								"turbines",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - turbine description + Azure Func + token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly9jMjRjNGNhYi0zZTc4LTQyYjItYTU5Mi03NWQwMTM5NGE2MTAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0MzI1MDIzLCJuYmYiOjE2ODQzMjUwMjMsImV4cCI6MTY4NDMyODkyMywiYWlvIjoiRTJaZ1lDaXpkdUczUGVaejdXci9tVStMd2c3bUF3QT0iLCJhcHBpZCI6IjExMWVkZTdkLTIwYTItNGE5OC1hNDk4LWRmMDJiNTc0Y2I1NyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiJkMzE3MmU4Zi03MWJlLTRkN2YtYTg2Yi05YTliN2JkZGMxNmEiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MXF0TVRNSjRQckpDcFpKMTBCT1VwaEJ6QUFBLiIsInJvbGVzIjpbIkRhZW1vbkFwcFJvbGUiXSwic3ViIjoiZDMxNzJlOGYtNzFiZS00ZDdmLWE4NmItOWE5YjdiZGRjMTZhIiwidGlkIjoiMjNjOWM4YWYtOGY1YS00NzAxLWFiZjYtMTE3MzI0YWUyZmQ2IiwidXRpIjoiRHJ3ZHVCN2lYRVcwSk8yNG1XZ0NBQSIsInZlciI6IjEuMCJ9.akDnH8Xs9Cw00g-hj5cuCt5kYkV-sm6IoKFWdDQL7CrhqaQdyilImwwYw5q5MPHyNDpSugFuHg9z1Yzcb6DyXG5ZS5fP_Gwica2ph5f1etJYuxrW8qZCAv65A5rfimZeyNCEiH_23k8Ha9y48k29T-rGhsEpK5QV9MqCgMIfA7aZ_c08NCr2sMPiDSKOnsem_wwGVb8ZV3F0529MvTUeDA4HHPUzdTJBjU8paEApPuxcZbpZUwdLx0wlAV_iUoyfmneqKsrQ7UwDOQ2iwwaUA487oNJU2nW1owe-GEGyHuWw40WEHJBv_V2Eb33wUbkYGQNL2TccQVpVSNyMOzAc5w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/turbines/1/format-description",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"turbines",
+								"1",
+								"format-description"
 							]
 						}
 					},
@@ -554,12 +628,12 @@
 					"response": []
 				},
 				{
-					"name": "wppapi-AZURE: Use \"TestSum\" Function",
+					"name": "wppapi-AZURE: TestSum Function",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://wppapi-desc-formatter-func.azurewebsites.net/api/TestSum?code=JISFeawLBnym7TM-j7e---function-key---mAzFuAmFyog==&x=50&y=42",
+							"raw": "https://wppapi-desc-formatter-func.azurewebsites.net/api/TestSum?code=JISFeawLBnym7TM----function-key---AzFuAmFyog==&x=50&y=42",
 							"protocol": "https",
 							"host": [
 								"wppapi-desc-formatter-func",
@@ -573,7 +647,7 @@
 							"query": [
 								{
 									"key": "code",
-									"value": "JISFeawLBnym7TM-j7e---function-key---mAzFuAmFyog=="
+									"value": "JISFeawLBnym7TM----function-key---zFuAmFyog=="
 								},
 								{
 									"key": "x",
@@ -582,6 +656,41 @@
 								{
 									"key": "y",
 									"value": "42"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: TurbineDescFormatter Function",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wppapi-desc-formatter-func.azurewebsites.net/api/TurbineDescFormatter?code=864l4tvPfmN3UI---function-key---VAzFuIPL-7Q==&serialNumber=SG 2.1-122&price=122000",
+							"protocol": "https",
+							"host": [
+								"wppapi-desc-formatter-func",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"TurbineDescFormatter"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "864l4tvPfmN3UI---function-key---VAzFuIPL-7Q=="
+								},
+								{
+									"key": "serialNumber",
+									"value": "SG 2.1-122"
+								},
+								{
+									"key": "price",
+									"value": "122000"
 								}
 							]
 						}
@@ -649,7 +758,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly83NDNmMjU3MS1iM2UwLTRmYzItOWNiOC0zMzcwYmQwYzdkYjEiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjgzODEzMTE1LCJuYmYiOjE2ODM4MTMxMTUsImV4cCI6MTY4MzgxNzAxNSwiYWlvIjoiRTJaZ1lGalk3aFZ6a2xsYTJYbi9YZkdqQmVjVEFRPT0iLCJhcHBpZCI6ImY3N2ExYWQ0LTdmMjYtNDhhZS05ZGQxLWU0YTFkMzU2MTU4YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiI4MWUxNjY1ZS1hM2RhLTRmMGItYjllMC0yYjYyNjE5ODAxMDIiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MW5FbFAzVGdzOEpQbkxnemNMME1mYkZ6QUFBLiIsInN1YiI6IjgxZTE2NjVlLWEzZGEtNGYwYi1iOWUwLTJiNjI2MTk4MDEwMiIsInRpZCI6IjIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNiIsInV0aSI6InJIa29aRDhfOUVtZjdBcmdwWmtVQUEiLCJ2ZXIiOiIxLjAifQ.YRv6T0Z8Qd_3NRoZJS_aoIqdM1PyszvWrDnrnUV4nbI_iQgytl0E8qGl6iVaPI-cN9WwSnOC_5Qh93uNfs9YDz8OpJEFqY-2RB1HS8krcJQGztSM-95wPqwsPhaH-cGNy2qNCc0qZFqwJnCaOh8oikYDXXfMmOBhBOOZBQwH8Hkhr__ESWm62dWxycWI6yyNFrTBrSzs-I7LeC0EAwbY9BHcqqLPLY_Xy2vEMeX66YH0iOd12WMUlXODpR0IZYjJGkiTUQjgRqPOF0lDhuKPBOEmyx1AB3RW9f3TY-jxMK7hH8OCPttt7uazSc8xUEsRqd2Ew52JXNXfkvNYH6OAJw",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly83NDNmMjU3MS1iM2UwLTRmYzItOWNiOC0zMzcwYmQwYzdkYjEiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0NDEyNTgxLCJuYmYiOjE2ODQ0MTI1ODEsImV4cCI6MTY4NDQxNjQ4MSwiYWlvIjoiRTJaZ1lMaVdZNUJoRWMyczVON3k3bXN4VCtJZkFBPT0iLCJhcHBpZCI6ImY3N2ExYWQ0LTdmMjYtNDhhZS05ZGQxLWU0YTFkMzU2MTU4YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiI4MWUxNjY1ZS1hM2RhLTRmMGItYjllMC0yYjYyNjE5ODAxMDIiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MW5FbFAzVGdzOEpQbkxnemNMME1mYkZ6QUFBLiIsInN1YiI6IjgxZTE2NjVlLWEzZGEtNGYwYi1iOWUwLTJiNjI2MTk4MDEwMiIsInRpZCI6IjIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNiIsInV0aSI6InJoM1M4RXNjSGthbFlPYVRsWDRTQUEiLCJ2ZXIiOiIxLjAifQ.LQ4J25OGFDeY9ZnfjFdWpfemu1XZk6HVJ8gyBegUrLK-OKCUCzkQq8aA_kCyFqY8Lwxbcs8_x1AM5Ekm76JyltTprcQPf37yRmygmiqgR3AIxmLNQVHganvFdutbW0uIx9E2_txfjC9jevpF4HOOH03ZRSPkfiv0Gcs0vas7e-qCl3OVvBw1dZERWh_tVChcNZ9exnGX6mwZN7Bma1ZT-QdBqu8YfSMdkH3uGw_Qmss20FTa6wj00qHM2iV2fHVRp-MhXijc789ABv7F-VI7bk1Tfk7uWgAjLgco1jEfdgSg07n1ajc33AAsIlX3luCrolPfvz162mQfqiN9MVZfBQ",
 									"type": "string"
 								}
 							]
@@ -668,6 +777,39 @@
 								"api",
 								"turbines",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wppapi-AZURE: Get turbine descr (Azure Function usage)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJhcGk6Ly83NDNmMjU3MS1iM2UwLTRmYzItOWNiOC0zMzcwYmQwYzdkYjEiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yM2M5YzhhZi04ZjVhLTQ3MDEtYWJmNi0xMTczMjRhZTJmZDYvIiwiaWF0IjoxNjg0NDE5MDY4LCJuYmYiOjE2ODQ0MTkwNjgsImV4cCI6MTY4NDQyMjk2OCwiYWlvIjoiRTJaZ1lCRExQTDNzWUViRGk0TEtweWU2dDF4M0FBQT0iLCJhcHBpZCI6ImY3N2ExYWQ0LTdmMjYtNDhhZS05ZGQxLWU0YTFkMzU2MTU4YSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNi8iLCJvaWQiOiI4MWUxNjY1ZS1hM2RhLTRmMGItYjllMC0yYjYyNjE5ODAxMDIiLCJyaCI6IjAuQVhNQXI4akpJMXFQQVVlcjloRnpKSzR2MW5FbFAzVGdzOEpQbkxnemNMME1mYkZ6QUFBLiIsInN1YiI6IjgxZTE2NjVlLWEzZGEtNGYwYi1iOWUwLTJiNjI2MTk4MDEwMiIsInRpZCI6IjIzYzljOGFmLThmNWEtNDcwMS1hYmY2LTExNzMyNGFlMmZkNiIsInV0aSI6IjZ0V1Z0c0FfdTB5UjI1YzltdE1SQUEiLCJ2ZXIiOiIxLjAifQ.Bl3FqA_TZevzHk4MunwSURJjecgGiQonLkDpzi1qsjI2NH7IylkWpTZ52D9eq0PjPrvGtGFsN8K7902_-80_r2kIqq6OW6DPYXIl5Ze4S_Np-DDBiFNi533KcasVr1lwRkXjfhPo0jGGqyde8t0kJPKN8l_DnAZPQyxmX3YTlpGYsXbWx1_nkgcXoDYNLkOj01JKlMe8caYiinVhV2S7LvxlvabY42xyhfleG3QwwV3ZRteL1P8iHWMhKbN_uV33u3ceEYH0lO--rOh4Z9Caz5YN40D-RdYgSBjvdCyW89KCoBezbtdm-q3jkOZNuUl_wYVClBmrZw2bqes6u8DPLg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://windpowerplatformapi.azurewebsites.net/api/turbines/1/format-description",
+							"protocol": "https",
+							"host": [
+								"windpowerplatformapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"turbines",
+								"1",
+								"format-description"
 							]
 						}
 					},
