@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Helpers;
+using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Services;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
@@ -12,6 +14,7 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
         public static IServiceCollection ConfigureDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             AddServices(services);
+            AddHelpers(services);
             AddRepositories(services);
 
             return services;
@@ -24,6 +27,11 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
             services.AddScoped<ICloudFuncService, CloudFuncService>();
             services.AddScoped<IHttpClientService, HttpClientService>();
             services.AddScoped<ICloudFuncUrlBuilderService, CloudFuncUrlBuilderService>();
+        }
+
+        private static void AddHelpers(IServiceCollection services)
+        {
+            services.AddScoped<IAzureResponseHelper, AzureResponseHelper>();
         }
 
         private static void AddRepositories(IServiceCollection services)

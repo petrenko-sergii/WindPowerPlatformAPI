@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Domain.Entities;
-using System.Net;
+using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -18,13 +18,19 @@ namespace WindPowerPlatformAPI.App.Controllers
 	public class TurbinesController : ControllerBase
 	{
 		private readonly ITurbineService _service;
-		private readonly IMapper _mapper;
+		private readonly IAzureResponseHelper _azureResponseHelper;
+        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public TurbinesController(ITurbineService service, IMapper mapper, IConfiguration configuration)
+        public TurbinesController(
+			ITurbineService service,
+            IAzureResponseHelper azureResponseHelper,
+            IMapper mapper, 
+			IConfiguration configuration)
         {
 			_service = service;
-			_mapper = mapper;
+			_azureResponseHelper = azureResponseHelper;
+            _mapper = mapper;
 			_configuration = configuration;
 		}
 
@@ -55,24 +61,10 @@ namespace WindPowerPlatformAPI.App.Controllers
         public async Task<ActionResult<string>> GetFormattedDescriptionById(int id)
         {
             var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
-			var funcApp = "Azure Function App";
-            var formattedDescription =  await _service.GetFormattedDescriptionById(id, funcKey);
+           
+            var formattedDescription = await _service.GetFormattedDescriptionById(id, funcKey);
 
-            if (string.IsNullOrEmpty(formattedDescription))
-            {
-				return NotFound();
-            } else if(formattedDescription == HttpStatusCode.NotFound.ToString())
-			{
-				return BadRequest($"{funcApp} \"TurbineDescFormatter\" is turned off or broken");
-            } else if(formattedDescription == HttpStatusCode.BadRequest.ToString())
-			{
-                return BadRequest($"Error happened during usage of {funcApp} \"TurbineDescFormatter\"");
-            } else if (formattedDescription.Contains("Error"))
-			{
-                return BadRequest($"{formattedDescription} -- happened during usage of {funcApp} \"TurbineDescFormatter\".");
-            }
-
-            return Ok(formattedDescription);
+            return _azureResponseHelper.CheckFormattedDescFuncResponse(formattedDescription);
         }
 
         [HttpPost]
