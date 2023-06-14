@@ -38,6 +38,7 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
         {
             services.AddScoped<ICommandRepository, CommandRepository>();
             services.AddScoped<ITurbineRepository, TurbineRepository>();
+            services.AddScoped<ITurbineInfoFileRepository, TurbineInfoFileRepository>();
         }
     }
 }

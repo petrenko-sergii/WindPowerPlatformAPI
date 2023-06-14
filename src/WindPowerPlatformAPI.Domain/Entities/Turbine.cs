@@ -14,5 +14,7 @@ namespace WindPowerPlatformAPI.Domain.Entities
 
 		[Required]
 		public decimal Price { get; set; }
-	}
+
+        public TurbineInfoFile InfoFile { get; set; }
+    }
 }

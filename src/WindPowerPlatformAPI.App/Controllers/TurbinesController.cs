@@ -10,6 +10,7 @@ using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -55,6 +56,21 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 			return Ok(turbine);
 		}
+
+        [HttpGet("{id}/info-file", Name = "GetInformationFile")]
+        public ActionResult<TurbineInfoFileReadDto> GetInformationFile()
+		{
+			//todo
+			return null;
+		}
+
+        [HttpPost("{turbineId}/upload-info-file", Name = "UploadInformationFile")]
+        public async Task<IActionResult> UploadInformationFile([FromForm] IFormFile infoFile, int turbineId)
+        {
+            var createdFile = await _service.SaveTurbineInfoFile(infoFile, turbineId);
+
+            return CreatedAtRoute(nameof(GetInformationFile), new { Id = createdFile.Id }, createdFile);
+        }
 
         [Authorize]
         [HttpGet("{id}/format-description", Name = "GetFormattedDescriptionById")]

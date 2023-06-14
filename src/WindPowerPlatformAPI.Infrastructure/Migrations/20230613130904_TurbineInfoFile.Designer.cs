@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WindPowerPlatformAPI.Infrastructure.Data;
@@ -11,9 +12,10 @@ using WindPowerPlatformAPI.Infrastructure.Data;
 namespace WindPowerPlatformAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class CommandContextModelSnapshot : ModelSnapshot
+    [Migration("20230613130904_TurbineInfoFile")]
+    partial class TurbineInfoFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

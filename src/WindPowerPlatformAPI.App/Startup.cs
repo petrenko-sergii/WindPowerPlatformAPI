@@ -36,8 +36,10 @@ namespace WindPowerPlatformAPI.App
             builder.Password = Configuration["Password"];
 
             services.AddDbContext<ApplicationDbContext>(opt =>
-                        opt.UseNpgsql(builder.ConnectionString, 
+                        opt.UseNpgsql(builder.ConnectionString,
                         b => b.MigrationsAssembly("WindPowerPlatformAPI.Infrastructure")));
+
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
