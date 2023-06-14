@@ -89,10 +89,17 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
                 }
                 catch (Exception ex)
                 {
-
                     throw new Exception($"Error happened during file saving: {ex.Message}");
                 }
             }
+        }
+
+        public TurbineInfoFileDownloadDto GetTurbineInfoFile(int turbineId)
+        {
+            var fileDB = _infoFileRepository.GetInformationFile(turbineId);
+            var downloadFileDto = _mapper.Map<TurbineInfoFileDownloadDto>(fileDB);
+          
+            return downloadFileDto;
         }
 
         public void UpdateTurbine(Turbine turbineToUpdate)
@@ -112,9 +119,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
             var turbine = _repository.GetTurbineById(id);
 
             if (turbine == null)
-            {
                 return "";
-            }
 
             var turbineDto = _mapper.Map<TurbineReadDto>(turbine);
 
@@ -153,7 +158,6 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
                 throw new Exception($"File for this turbine  -- already exists.");
             }
         }
-
 
         private List<string> GetAllowedInfoFileExtensions()
         {

@@ -21,5 +21,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
         Task<string> GetFormattedDescriptionById(int id, string functionKey);
 
         Task<TurbineInfoFileReadDto> SaveTurbineInfoFile(IFormFile infoFile, int turbineId);
+
+        TurbineInfoFileDownloadDto GetTurbineInfoFile(int turbineId);
     }
 }

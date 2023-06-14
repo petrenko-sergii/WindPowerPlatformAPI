@@ -11,6 +11,7 @@ using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 using Microsoft.AspNetCore.Http;
+using MimeTypes;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -50,9 +51,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 			var turbine = _service.GetTurbineById(id);
 
 			if (turbine == null)
-			{
 				return NotFound();
-			}
 
 			return Ok(turbine);
 		}
@@ -63,6 +62,15 @@ namespace WindPowerPlatformAPI.App.Controllers
 			//todo
 			return null;
 		}
+
+        [HttpGet("{turbineId}/download-file")]
+        public IActionResult DownloadInformationFile(int turbineId)
+        {
+			var fileDto = _service.GetTurbineInfoFile(turbineId);
+			var contentType = MimeTypeMap.GetMimeType(fileDto.FileExtension);
+
+            return File(fileDto.Bytes, contentType, $"{fileDto.Description}{fileDto.FileExtension}");
+        }
 
         [HttpPost("{turbineId}/upload-info-file", Name = "UploadInformationFile")]
         public async Task<IActionResult> UploadInformationFile([FromForm] IFormFile infoFile, int turbineId)
