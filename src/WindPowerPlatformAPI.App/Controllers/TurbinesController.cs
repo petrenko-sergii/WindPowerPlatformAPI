@@ -56,18 +56,15 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbine);
 		}
 
-        [HttpGet("{id}/info-file", Name = "GetInformationFile")]
-        public ActionResult<TurbineInfoFileReadDto> GetInformationFile()
-		{
-			//todo
-			return null;
-		}
-
-        [HttpGet("{turbineId}/download-file")]
+        [HttpGet("{turbineId}/download-info-file", Name = "DownloadInformationFile")]
         public IActionResult DownloadInformationFile(int turbineId)
         {
 			var fileDto = _service.GetTurbineInfoFile(turbineId);
-			var contentType = MimeTypeMap.GetMimeType(fileDto.FileExtension);
+
+			if(fileDto == null)
+                return NotFound($"Information file for Turbine with Id = {turbineId} -- not found.");
+
+            var contentType = MimeTypeMap.GetMimeType(fileDto.FileExtension);
 
             return File(fileDto.Bytes, contentType, $"{fileDto.Description}{fileDto.FileExtension}");
         }
@@ -77,7 +74,7 @@ namespace WindPowerPlatformAPI.App.Controllers
         {
             var createdFile = await _service.SaveTurbineInfoFile(infoFile, turbineId);
 
-            return CreatedAtRoute(nameof(GetInformationFile), new { Id = createdFile.Id }, createdFile);
+            return CreatedAtRoute(nameof(DownloadInformationFile), new { turbineId = createdFile.TurbineId }, createdFile);
         }
 
         [Authorize]

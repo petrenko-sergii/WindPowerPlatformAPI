@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "14f6c5c9-d30a-42eb-8713-73c55e94e661",
 		"name": "WPP_API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8069361"
 	},
 	"item": [
 		{
@@ -429,6 +430,60 @@
 							"path": [
 								"api",
 								"turbines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Download file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/Turbines/1/download-info-file",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"Turbines",
+								"1",
+								"download-info-file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Upload info file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "infoFile",
+									"type": "file",
+									"src": "/D:/...path/pdf/Vestas_V39_600.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:44350/api/turbines/1/upload-info-file",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines",
+								"1",
+								"upload-info-file"
 							]
 						}
 					},
