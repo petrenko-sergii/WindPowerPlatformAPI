@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "bf0b7857-eb09-46ee-95d0-711b4e6a6759",
+		"name": "PubSub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8069361"
+	},
+	"item": [
+		{
+			"name": "Create Topic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"orders\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7100/api/topics",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"topicMessage\": \"order-123 created\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7100/api/topics/2/messages",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"topics",
+						"2",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Subscription",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"finance-system\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7100/api/topics/1/subscriptions",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"topics",
+						"1",
+						"subscriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return Topics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7100/api/topics",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subscriber Messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7100/api/subscriptions/2/messages",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"subscriptions",
+						"2",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Message Confirmation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[2]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7100/api/subscriptions/2/messages",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7100",
+					"path": [
+						"api",
+						"subscriptions",
+						"2",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
