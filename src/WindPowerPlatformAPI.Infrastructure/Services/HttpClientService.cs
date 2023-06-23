@@ -9,6 +9,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
     {
         public HttpClient GetHttpClient()
         {
+            //todo: use IHttpClientFactory 
             var httpClient = new HttpClient();
 
             Configure(httpClient);

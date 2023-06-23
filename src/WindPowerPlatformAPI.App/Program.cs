@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -18,6 +14,13 @@ namespace WindPowerPlatformAPI.App
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog((context, config) =>
+                {
+                    var connectionString = context.Configuration.GetConnectionString("PostgreSqlConnection");
+
+                    config.WriteTo.PostgreSQL(connectionString, "Logs", schemaName: "public", needAutoCreateTable: true, respectCase: true)
+                        .MinimumLevel.Information();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
