@@ -8,6 +8,7 @@ using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.App.AutoMapper;
 using Xunit;
+using Microsoft.Extensions.Logging;
 
 namespace WindPowerPlatformAPI.Tests
 {
@@ -17,6 +18,7 @@ namespace WindPowerPlatformAPI.Tests
         CommandsProfile realProfile;
         MapperConfiguration configuration;
         IMapper mapper;
+        ILogger<CommandsController> logger;
 
         //the class constructor will be called for every test
         public CommandsControllerTests()
@@ -25,6 +27,7 @@ namespace WindPowerPlatformAPI.Tests
             realProfile = new CommandsProfile();
             configuration = new MapperConfiguration(cfg => cfg.AddProfile(realProfile));
             mapper = new Mapper(configuration);
+            logger = new Mock<ILogger<CommandsController>>().Object;
         }
 
         [Fact]
@@ -32,7 +35,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(0));
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetAllCommands();
@@ -46,7 +49,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetAllCommands();
@@ -62,7 +65,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetAllCommands();
@@ -76,7 +79,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetAllCommands();
@@ -91,7 +94,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
            
             //Act
             var result = controller.GetCommandById(1);
@@ -112,7 +115,7 @@ namespace WindPowerPlatformAPI.Tests
                     Platform = "Mock",
                     CommandLine = "Mock"
                 });
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetCommandById(1);
@@ -133,7 +136,7 @@ namespace WindPowerPlatformAPI.Tests
                     Platform = "Mock",
                     CommandLine = "Mock"
                 });
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.GetCommandById(1);
@@ -162,7 +165,7 @@ namespace WindPowerPlatformAPI.Tests
                     CommandLine = "Mock"
                 });
 
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.CreateCommand(commandCreateDto);
@@ -185,7 +188,7 @@ namespace WindPowerPlatformAPI.Tests
                     CommandLine = "Mock"
                 });
 
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.UpdateCommand(1, new CommandUpdateDto { });
@@ -200,7 +203,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
 
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.UpdateCommand(0, new CommandUpdateDto { });
@@ -215,7 +218,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
 
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.PartialCommandUpdate(0, new Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<CommandUpdateDto> { });
@@ -237,7 +240,7 @@ namespace WindPowerPlatformAPI.Tests
                         CommandLine = "Mock"
                     });
 
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.DeleteCommand(1);
@@ -251,7 +254,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = new CommandsController(mockService.Object, mapper);
+            var controller = new CommandsController(mockService.Object, mapper, logger);
 
             //Act
             var result = controller.DeleteCommand(0);

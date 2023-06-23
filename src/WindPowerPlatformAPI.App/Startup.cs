@@ -15,17 +15,19 @@ using WindPowerPlatformAPI.Infrastructure.Data;
 using WindPowerPlatformAPI.Infrastructure.DI;
 using Npgsql;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Logging;
 
 namespace WindPowerPlatformAPI.App
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -77,8 +79,13 @@ namespace WindPowerPlatformAPI.App
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            ApplicationDbContext context, 
+            ILogger<Startup> logger)
         {
+            LogInitialInfo(env, logger);
+
             context.Database.Migrate();
 
             if (env.IsDevelopment())
@@ -90,7 +97,8 @@ namespace WindPowerPlatformAPI.App
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{AppDomain.CurrentDomain.FriendlyName} V1");
                 });
-            } else
+            }
+            else
             {
                 app.UseMiddleware<BlockAnonymousMiddleware>();
             }
@@ -108,6 +116,16 @@ namespace WindPowerPlatformAPI.App
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void LogInitialInfo(IWebHostEnvironment env, ILogger<Startup> logger)
+        {
+            logger.LogInformation("Application name: {0}", env.ApplicationName);
+            logger.LogInformation("Assembly version: {0}", GetType().Assembly.GetName().Version);
+            logger.LogInformation("Environment name: {0}", env.EnvironmentName);
+            logger.LogInformation("Machine name: {0}", Environment.MachineName);
+            logger.LogInformation("User name: {0}", Environment.UserName);
+            logger.LogInformation("Current directory: {0}", Environment.CurrentDirectory);
         }
     }
 }

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
@@ -16,17 +18,20 @@ namespace WindPowerPlatformAPI.App.Controllers
 	{
 		private readonly ICommandService _service;
 		private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-		public CommandsController(ICommandService service, IMapper mapper)
+        public CommandsController(ICommandService service, IMapper mapper, ILogger<CommandsController> logger)
         {
 			_service = service;
 			_mapper = mapper;
-		}
+			_logger = logger;
+        }
 
 		[HttpGet]
 		public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
 		{
-			var commands = _service.GetAllCommands();
+			_logger.LogInformation("Method \"GetAllCommands\" was called.");
+            var commands = _service.GetAllCommands();
 
 			return Ok(commands);
 		}
@@ -48,12 +53,17 @@ namespace WindPowerPlatformAPI.App.Controllers
 		[HttpPost]
 		public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
 		{
-			if(commandCreateDto == null)
+            _logger.LogInformation("Method POST \"CreateCommand\" was called with params: {0}", JsonConvert.SerializeObject(commandCreateDto));
+
+            if (commandCreateDto == null)
             {
-				throw new ArgumentNullException(nameof(commandCreateDto));
+				var ex = new ArgumentNullException(nameof(commandCreateDto));
+				_logger.LogError(ex, "Error: Input parameter (CommandCreateDto) is null.");
+
+				throw ex;
 			}
 
-			var createdCommand = _service.CreateCommand(commandCreateDto);
+            var createdCommand = _service.CreateCommand(commandCreateDto);
 
 			return CreatedAtRoute(nameof(GetCommandById), new { Id = createdCommand.Id }, createdCommand);
 		}
