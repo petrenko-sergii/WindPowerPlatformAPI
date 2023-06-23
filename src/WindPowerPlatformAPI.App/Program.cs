@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using System;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -18,8 +19,12 @@ namespace WindPowerPlatformAPI.App
                 {
                     var connectionString = context.Configuration.GetConnectionString("PostgreSqlConnection");
 
-                    config.WriteTo.PostgreSQL(connectionString, "Logs", schemaName: "public", needAutoCreateTable: true, respectCase: true)
-                        .MinimumLevel.Information();
+                    config
+                        .WriteTo.PostgreSQL(connectionString, "Logs", schemaName: "public", needAutoCreateTable: true, respectCase: true)
+                        .WriteTo.Console()
+                        .MinimumLevel.Information()
+                        .Enrich.WithProperty("Version", typeof(Startup).Assembly.GetName().Version)
+                        .Enrich.WithProperty("MachineName", Environment.MachineName);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
