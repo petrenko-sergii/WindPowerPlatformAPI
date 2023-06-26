@@ -102,15 +102,15 @@ namespace WindPowerPlatformAPI.App
             {
                 app.UseMiddleware<BlockAnonymousMiddleware>();
             }
+            app.UseCors();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMiddleware<SecurityHeadersMiddleware>();
             app.UseMiddleware<BlockCrossSiteScriptingMiddleware>();
-            app.UseCors();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

@@ -20,7 +20,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 	[Route("api/[controller]")]
 	[ApiController]
 	public class TurbinesController : BaseApiController
-    {
+	{
 		private readonly ITurbineService _service;
 		private readonly IAzureResponseHelper _azureResponseHelper;
 		private readonly IConfiguration _configuration;
@@ -37,7 +37,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 			_configuration = configuration;
 		}
 
-        [HttpGet]
+		[HttpGet]
 		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines()
 		{
 			var turbines = _service.GetAllTurbines();

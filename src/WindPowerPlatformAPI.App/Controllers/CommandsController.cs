@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
+using WindPowerPlatformAPI.Infrastructure.Exceptions;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
@@ -18,7 +18,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 	{
 		private readonly ICommandService _service;
 
-        public CommandsController(ICommandService service, IMapper mapper, ILogger<CommandsController> logger)
+		public CommandsController(ICommandService service, IMapper mapper, ILogger<CommandsController> logger)
 			: base(mapper, logger) 
 		{
 			_service = service;
@@ -41,7 +41,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 			if (command == null)
 			{
-				return NotFound();
+				throw new NotFoundException($"Command with id {id} is not found.");
 			}
 
 			return Ok(command);
@@ -54,7 +54,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 			if (commandCreateDto == null)
 			{
-				var ex = new ArgumentNullException(nameof(commandCreateDto));
+				var ex = new BadArgumentException(nameof(commandCreateDto));
 				_logger.LogError(ex, "Error: Input parameter (CommandCreateDto) is null.");
 
 				throw ex;
@@ -70,9 +70,10 @@ namespace WindPowerPlatformAPI.App.Controllers
 		public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
 		{
 			var commandModelFromRepo = _service.GetCommandById(id);
+
 			if (commandModelFromRepo == null)
 			{
-				return NotFound();
+				throw new NotFoundException($"Command with id {id} is not found.");
 			}
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
@@ -87,9 +88,10 @@ namespace WindPowerPlatformAPI.App.Controllers
 		public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
 		{
 			var commandModelFromRepo = _service.GetCommandById(id);
+
 			if (commandModelFromRepo == null)
 			{
-				return NotFound();
+				throw new NotFoundException($"Command with id {id} is not found.");
 			}
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
@@ -110,11 +112,12 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 		[HttpDelete("{id}")]
 		public ActionResult DeleteCommand(int id)
-        {
+		{
 			var commandModelFromRepo = _service.GetCommandById(id);
+
 			if (commandModelFromRepo == null)
 			{
-				return NotFound();
+				throw new NotFoundException($"Command with id {id} is not found.");
 			}
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
