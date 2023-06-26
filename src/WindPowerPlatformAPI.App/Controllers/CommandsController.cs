@@ -14,30 +14,27 @@ namespace WindPowerPlatformAPI.App.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class CommandsController : ControllerBase
+	public class CommandsController : BaseApiController
 	{
 		private readonly ICommandService _service;
-		private readonly IMapper _mapper;
-        private readonly ILogger _logger;
 
         public CommandsController(ICommandService service, IMapper mapper, ILogger<CommandsController> logger)
-        {
+			: base(mapper, logger) 
+		{
 			_service = service;
-			_mapper = mapper;
-			_logger = logger;
-        }
+		}
 
 		[HttpGet]
 		public ActionResult<IEnumerable<CommandReadDto>> GetAllCommands()
 		{
 			_logger.LogInformation("Method \"GetAllCommands\" was called.");
-            var commands = _service.GetAllCommands();
+			var commands = _service.GetAllCommands();
 
 			return Ok(commands);
 		}
 
-        [Authorize]
-        [HttpGet("{id}", Name="GetCommandById")]
+		[Authorize]
+		[HttpGet("{id}", Name="GetCommandById")]
 		public ActionResult<CommandReadDto> GetCommandById(int id)
 		{
 			var command = _service.GetCommandById(id);
@@ -53,17 +50,17 @@ namespace WindPowerPlatformAPI.App.Controllers
 		[HttpPost]
 		public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
 		{
-            _logger.LogInformation("Method POST \"CreateCommand\" was called with params: {0}", JsonConvert.SerializeObject(commandCreateDto));
+			_logger.LogInformation("Method POST \"CreateCommand\" was called with params: {0}", JsonConvert.SerializeObject(commandCreateDto));
 
-            if (commandCreateDto == null)
-            {
+			if (commandCreateDto == null)
+			{
 				var ex = new ArgumentNullException(nameof(commandCreateDto));
 				_logger.LogError(ex, "Error: Input parameter (CommandCreateDto) is null.");
 
 				throw ex;
 			}
 
-            var createdCommand = _service.CreateCommand(commandCreateDto);
+			var createdCommand = _service.CreateCommand(commandCreateDto);
 
 			return CreatedAtRoute(nameof(GetCommandById), new { Id = createdCommand.Id }, createdCommand);
 		}

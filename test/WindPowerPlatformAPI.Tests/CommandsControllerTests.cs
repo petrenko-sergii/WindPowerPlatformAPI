@@ -35,7 +35,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(0));
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetAllCommands();
@@ -49,7 +49,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetAllCommands();
@@ -65,7 +65,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetAllCommands();
@@ -79,7 +79,7 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange
             mockService.Setup(svc => svc.GetAllCommands()).Returns(GetCommands(1));
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetAllCommands();
@@ -88,13 +88,12 @@ namespace WindPowerPlatformAPI.Tests
             Assert.IsType<ActionResult<IEnumerable<CommandReadDto>>>(result);
         }
 
-
         [Fact]
         public void GetCommandByID_WhenNonExistentIDProvided_Returns404NotFound()
         {
             //Arrange
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
            
             //Act
             var result = controller.GetCommandById(1);
@@ -115,7 +114,7 @@ namespace WindPowerPlatformAPI.Tests
                     Platform = "Mock",
                     CommandLine = "Mock"
                 });
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetCommandById(1);
@@ -136,7 +135,7 @@ namespace WindPowerPlatformAPI.Tests
                     Platform = "Mock",
                     CommandLine = "Mock"
                 });
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.GetCommandById(1);
@@ -165,7 +164,7 @@ namespace WindPowerPlatformAPI.Tests
                     CommandLine = "Mock"
                 });
 
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.CreateCommand(commandCreateDto);
@@ -188,7 +187,7 @@ namespace WindPowerPlatformAPI.Tests
                     CommandLine = "Mock"
                 });
 
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.UpdateCommand(1, new CommandUpdateDto { });
@@ -203,7 +202,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
 
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.UpdateCommand(0, new CommandUpdateDto { });
@@ -218,7 +217,7 @@ namespace WindPowerPlatformAPI.Tests
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
 
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.PartialCommandUpdate(0, new Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<CommandUpdateDto> { });
@@ -240,7 +239,7 @@ namespace WindPowerPlatformAPI.Tests
                         CommandLine = "Mock"
                     });
 
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.DeleteCommand(1);
@@ -254,13 +253,27 @@ namespace WindPowerPlatformAPI.Tests
         {
             //Arrange 
             mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = new CommandsController(mockService.Object, mapper, logger);
+            var controller = GetCommandsController();
 
             //Act
             var result = controller.DeleteCommand(0);
 
             //Assert
             Assert.IsType<NotFoundResult>(result);
+        }
+
+        public void Dispose()
+        {
+            mockService = null;
+            mapper = null;
+            configuration = null;
+            realProfile = null;
+            logger = null;
+        }
+
+        private CommandsController GetCommandsController()
+        {
+            return new CommandsController(mockService.Object, mapper, logger);
         }
 
         private List<CommandReadDto> GetCommands(int num)
@@ -277,14 +290,6 @@ namespace WindPowerPlatformAPI.Tests
                 });
             }
             return commands;
-        }
-
-        public void Dispose()
-        {
-            mockService = null;
-            mapper = null;
-            configuration = null;
-            realProfile = null;
         }
     }
 }

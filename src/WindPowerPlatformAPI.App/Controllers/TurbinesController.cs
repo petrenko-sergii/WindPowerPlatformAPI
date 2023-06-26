@@ -12,31 +12,32 @@ using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 using Microsoft.AspNetCore.Http;
 using MimeTypes;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class TurbinesController : ControllerBase
-	{
+	public class TurbinesController : BaseApiController
+    {
 		private readonly ITurbineService _service;
 		private readonly IAzureResponseHelper _azureResponseHelper;
-        private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
+		private readonly IConfiguration _configuration;
 
-        public TurbinesController(
-			ITurbineService service,
-            IAzureResponseHelper azureResponseHelper,
-            IMapper mapper, 
-			IConfiguration configuration)
-        {
+		public TurbinesController(
+		ITurbineService service,
+		IAzureResponseHelper azureResponseHelper,
+		IConfiguration configuration,
+		IMapper mapper,
+		ILogger<TurbinesController> logger) : base(mapper, logger)
+		{
 			_service = service;
 			_azureResponseHelper = azureResponseHelper;
-            _mapper = mapper;
 			_configuration = configuration;
 		}
 
-		[HttpGet]
+        [HttpGet]
 		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines()
 		{
 			var turbines = _service.GetAllTurbines();
@@ -56,44 +57,49 @@ namespace WindPowerPlatformAPI.App.Controllers
 			return Ok(turbine);
 		}
 
-        [HttpGet("{turbineId}/download-info-file", Name = "DownloadInformationFile")]
-        public IActionResult DownloadInformationFile(int turbineId)
-        {
+		[HttpGet("{turbineId}/download-info-file", Name = "DownloadInformationFile")]
+		public IActionResult DownloadInformationFile(int turbineId)
+		{
 			var fileDto = _service.GetTurbineInfoFile(turbineId);
 
 			if(fileDto == null)
-                return NotFound($"Information file for Turbine with Id = {turbineId} -- not found.");
+				return NotFound($"Information file for Turbine with Id = {turbineId} -- not found.");
 
-            var contentType = MimeTypeMap.GetMimeType(fileDto.FileExtension);
+			var contentType = MimeTypeMap.GetMimeType(fileDto.FileExtension);
+			
+			return File(fileDto.Bytes, contentType, $"{fileDto.Description}{fileDto.FileExtension}");
+		}
 
-            return File(fileDto.Bytes, contentType, $"{fileDto.Description}{fileDto.FileExtension}");
-        }
+		[HttpPost("{turbineId}/upload-info-file", Name = "UploadInformationFile")]
+		public async Task<IActionResult> UploadInformationFile([FromForm] IFormFile infoFile, int turbineId)
+		{
+			var createdFile = await _service.SaveTurbineInfoFile(infoFile, turbineId);
+		
+			return CreatedAtRoute(nameof(DownloadInformationFile), new { turbineId = createdFile.TurbineId }, createdFile);
+		}
 
-        [HttpPost("{turbineId}/upload-info-file", Name = "UploadInformationFile")]
-        public async Task<IActionResult> UploadInformationFile([FromForm] IFormFile infoFile, int turbineId)
-        {
-            var createdFile = await _service.SaveTurbineInfoFile(infoFile, turbineId);
-
-            return CreatedAtRoute(nameof(DownloadInformationFile), new { turbineId = createdFile.TurbineId }, createdFile);
-        }
-
-        [Authorize]
-        [HttpGet("{id}/format-description", Name = "GetFormattedDescriptionById")]
-        public async Task<ActionResult<string>> GetFormattedDescriptionById(int id)
-        {
-            var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
-           
-            var formattedDescription = await _service.GetFormattedDescriptionById(id, funcKey);
-
-            return _azureResponseHelper.CheckFormattedDescFuncResponse(formattedDescription);
-        }
-
-        [HttpPost]
+		[Authorize]
+		[HttpGet("{id}/format-description", Name = "GetFormattedDescriptionById")]
+		public async Task<ActionResult<string>> GetFormattedDescriptionById(int id)
+		{
+			var funcKey = _configuration["FunctionApp:TurbineDescFormatterFunc:Key"];
+			
+			var formattedDescription = await _service.GetFormattedDescriptionById(id, funcKey);
+			
+			return _azureResponseHelper.CheckFormattedDescFuncResponse(formattedDescription);
+		}
+		
+		[HttpPost]
 		public ActionResult<TurbineReadDto> CreateTurbine(TurbineCreateDto turbineCreateDto)
 		{
+			_logger.LogInformation("Method POST \"CreateTurbine\" was called with params: {0}", JsonConvert.SerializeObject(turbineCreateDto));
+
 			if (turbineCreateDto == null)
 			{
-				throw new ArgumentNullException(nameof(turbineCreateDto));
+				var ex = new ArgumentNullException(nameof(turbineCreateDto));
+				_logger.LogError(ex, "Error: Input parameter (TurbineCreateDto) is null.");
+				
+				throw ex;
 			}
 
 			var createdTurbine = _service.CreateTurbine(turbineCreateDto);
