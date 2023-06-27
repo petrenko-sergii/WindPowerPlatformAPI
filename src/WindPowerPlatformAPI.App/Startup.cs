@@ -110,6 +110,7 @@ namespace WindPowerPlatformAPI.App
 
             app.UseMiddleware<SecurityHeadersMiddleware>();
             app.UseMiddleware<BlockCrossSiteScriptingMiddleware>();
+            app.UseMiddleware<CorrelationIdLogContextMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>

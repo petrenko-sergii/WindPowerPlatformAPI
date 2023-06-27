@@ -42,7 +42,7 @@ namespace WindPowerPlatformAPI.App.Middleware
             {
                 case HttpStatusCode.NotFound:
                 case HttpStatusCode.BadRequest:
-                    _logger.LogError(messageTemplate, ex, ex.GetType());
+                    _logger.LogWarning(messageTemplate, ex, ex.GetType());
                     break;
                 default:
                     _logger.LogError(messageTemplate, ex, ex.GetType());

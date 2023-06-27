@@ -21,6 +21,7 @@ namespace WindPowerPlatformAPI.App
 
                     config
                         .WriteTo.PostgreSQL(connectionString, "Logs", schemaName: "public", needAutoCreateTable: true, respectCase: true)
+                        .Enrich.FromLogContext()
                         .WriteTo.Console()
                         .MinimumLevel.Information()
                         .Enrich.WithProperty("Version", typeof(Startup).Assembly.GetName().Version)
