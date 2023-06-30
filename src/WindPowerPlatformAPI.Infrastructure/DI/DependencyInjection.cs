@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Filters;
 using WindPowerPlatformAPI.Infrastructure.Helpers;
 using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 using WindPowerPlatformAPI.Infrastructure.Services;
@@ -16,6 +17,7 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
             AddServices(services);
             AddHelpers(services);
             AddRepositories(services);
+            AddFilters(services);
 
             return services;
         }
@@ -39,6 +41,11 @@ namespace WindPowerPlatformAPI.Infrastructure.DI
             services.AddScoped<ICommandRepository, CommandRepository>();
             services.AddScoped<ITurbineRepository, TurbineRepository>();
             services.AddScoped<ITurbineInfoFileRepository, TurbineInfoFileRepository>();
+        }
+
+        private static void AddFilters(IServiceCollection services)
+        {
+            services.AddTransient<UniqueSerialNumberFilter>();
         }
     }
 }

@@ -64,6 +64,7 @@ namespace WindPowerPlatformAPI.App.Middleware
                 case NotFoundException:
                     return HttpStatusCode.NotFound;
 
+                case UniqueSerialNumberException:
                 case BadArgumentException:
                     return HttpStatusCode.BadRequest;
 

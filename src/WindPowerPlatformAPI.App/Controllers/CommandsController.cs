@@ -48,6 +48,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpPost]
+		[Consumes("application/json")]
 		public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
 		{
 			_logger.LogInformation("Method POST \"CreateCommand\" was called with params: {0}", JsonConvert.SerializeObject(commandCreateDto));

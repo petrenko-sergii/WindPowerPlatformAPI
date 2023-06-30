@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using MimeTypes;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using WindPowerPlatformAPI.Infrastructure.Attributes;
 
 namespace WindPowerPlatformAPI.App.Controllers
 {
@@ -90,7 +91,9 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 		
 		[HttpPost]
-		public ActionResult<TurbineReadDto> CreateTurbine(TurbineCreateDto turbineCreateDto)
+		[UniqueSerialNumber]
+        [Consumes("application/json")]
+        public ActionResult<TurbineReadDto> CreateTurbine(TurbineCreateDto turbineCreateDto)
 		{
 			_logger.LogInformation("Method POST \"CreateTurbine\" was called with params: {0}", JsonConvert.SerializeObject(turbineCreateDto));
 
