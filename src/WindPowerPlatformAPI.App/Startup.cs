@@ -27,7 +27,7 @@ namespace WindPowerPlatformAPI.App
         {
             Configuration = configuration;
         }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -79,9 +79,9 @@ namespace WindPowerPlatformAPI.App
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
-            IWebHostEnvironment env, 
-            ApplicationDbContext context, 
+        public void Configure(IApplicationBuilder app,
+            IWebHostEnvironment env,
+            ApplicationDbContext context,
             ILogger<Startup> logger)
         {
             LogInitialInfo(env, logger);
@@ -112,6 +112,7 @@ namespace WindPowerPlatformAPI.App
             app.UseMiddleware<BlockCrossSiteScriptingMiddleware>();
             app.UseMiddleware<CorrelationIdLogContextMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<LoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
