@@ -16,6 +16,7 @@ using WindPowerPlatformAPI.Infrastructure.DI;
 using Npgsql;
 using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.Logging;
+using WindPowerPlatformAPI.Infrastructure.Attributes;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -64,6 +65,8 @@ namespace WindPowerPlatformAPI.App
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials()));
+
+            services.AddScoped<ValidationPostPutFilterAttribute>();
 
             services.AddControllers().AddNewtonsoftJson(s =>
             {

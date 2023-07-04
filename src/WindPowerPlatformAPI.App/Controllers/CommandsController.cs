@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
+using WindPowerPlatformAPI.Infrastructure.Attributes;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.Infrastructure.Exceptions;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
@@ -49,18 +49,9 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 		[HttpPost]
 		[Consumes("application/json")]
+		[ServiceFilter(typeof(ValidationPostPutFilterAttribute))]
 		public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
 		{
-			_logger.LogInformation("Method POST \"CreateCommand\" was called with params: {0}", JsonConvert.SerializeObject(commandCreateDto));
-
-			if (commandCreateDto == null)
-			{
-				var ex = new BadArgumentException(nameof(commandCreateDto));
-				_logger.LogError(ex, "Error: Input parameter (CommandCreateDto) is null.");
-
-				throw ex;
-			}
-
 			var createdCommand = _service.CreateCommand(commandCreateDto);
 
 			return CreatedAtRoute(nameof(GetCommandById), new { Id = createdCommand.Id }, createdCommand);
@@ -68,9 +59,11 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 
 		[HttpPut("{id}")]
-		public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
+        [Consumes("application/json")]
+        [ServiceFilter(typeof(ValidationPostPutFilterAttribute))]
+        public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
 		{
-			var commandModelFromRepo = _service.GetCommandById(id);
+            var commandModelFromRepo = _service.GetCommandById(id);
 
 			if (commandModelFromRepo == null)
 			{

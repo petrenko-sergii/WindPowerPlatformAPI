@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Serilog.Context;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace WindPowerPlatformAPI.App.Middleware
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                using (LogContext.PushProperty("MethodType", context.Request.Method))
+                {
+                    await HandleExceptionAsync(context, ex);
+                }
             }
         }
 
