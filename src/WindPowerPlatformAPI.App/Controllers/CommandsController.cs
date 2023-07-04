@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Attributes;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
-using WindPowerPlatformAPI.Infrastructure.Exceptions;
 using WindPowerPlatformAPI.Infrastructure.Services.Interfaces;
 
 namespace WindPowerPlatformAPI.App.Controllers
@@ -35,21 +34,17 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 		[Authorize]
 		[HttpGet("{id}", Name="GetCommandById")]
+		[ServiceFilter(typeof(CommandExistsValidationAttribute<CommandBaseDto>))]
 		public ActionResult<CommandReadDto> GetCommandById(int id)
 		{
-			var command = _service.GetCommandById(id);
-
-			if (command == null)
-			{
-				throw new NotFoundException($"Command with id {id} is not found.");
-			}
+			var command = HttpContext.Items["command"] as CommandReadDto;
 
 			return Ok(command);
 		}
 
 		[HttpPost]
 		[Consumes("application/json")]
-		[ServiceFilter(typeof(ValidationPostPutFilterAttribute))]
+		[ServiceFilter(typeof(CommandValidationFilterAttribute))]
 		public ActionResult<CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
 		{
 			var createdCommand = _service.CreateCommand(commandCreateDto);
@@ -59,16 +54,12 @@ namespace WindPowerPlatformAPI.App.Controllers
 
 
 		[HttpPut("{id}")]
-        [Consumes("application/json")]
-        [ServiceFilter(typeof(ValidationPostPutFilterAttribute))]
-        public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
+		[Consumes("application/json")]
+		[ServiceFilter(typeof(CommandValidationFilterAttribute))]
+		[ServiceFilter(typeof(CommandExistsValidationAttribute<CommandBaseDto>))]
+		public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto)
 		{
-            var commandModelFromRepo = _service.GetCommandById(id);
-
-			if (commandModelFromRepo == null)
-			{
-				throw new NotFoundException($"Command with id {id} is not found.");
-			}
+			var commandModelFromRepo = HttpContext.Items["command"] as CommandReadDto;
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
 			_mapper.Map(commandUpdateDto, commandEntity);
@@ -79,14 +70,10 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpPatch("{id}")]
+		[ServiceFilter(typeof(CommandExistsValidationAttribute<CommandBaseDto>))]
 		public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
 		{
-			var commandModelFromRepo = _service.GetCommandById(id);
-
-			if (commandModelFromRepo == null)
-			{
-				throw new NotFoundException($"Command with id {id} is not found.");
-			}
+			var commandModelFromRepo = HttpContext.Items["command"] as CommandUpdateDto;
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
 
@@ -105,14 +92,10 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpDelete("{id}")]
+		[ServiceFilter(typeof(CommandExistsValidationAttribute<CommandBaseDto>))]
 		public ActionResult DeleteCommand(int id)
 		{
-			var commandModelFromRepo = _service.GetCommandById(id);
-
-			if (commandModelFromRepo == null)
-			{
-				throw new NotFoundException($"Command with id {id} is not found.");
-			}
+			var commandModelFromRepo = HttpContext.Items["command"] as CommandReadDto;
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
 			_service.DeleteCommand(commandEntity);

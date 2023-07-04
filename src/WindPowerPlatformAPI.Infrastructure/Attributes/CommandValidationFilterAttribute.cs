@@ -5,7 +5,7 @@ using WindPowerPlatformAPI.Infrastructure.Dtos;
 
 namespace WindPowerPlatformAPI.Infrastructure.Attributes
 {
-    public class ValidationPostPutFilterAttribute : IActionFilter
+    public class CommandValidationFilterAttribute : IActionFilter
     {
         public void OnActionExecuting(ActionExecutingContext context)
         {
