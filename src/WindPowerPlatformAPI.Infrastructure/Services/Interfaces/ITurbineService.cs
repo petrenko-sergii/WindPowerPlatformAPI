@@ -8,7 +8,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Services.Interfaces
 {
     public interface ITurbineService
     {
-        IEnumerable<TurbineReadDto> GetAllTurbines();
+        IEnumerable<TurbineReadDto> GetAllTurbines(string sortBy);
 
         TurbineReadDto GetTurbineById(int id);
 

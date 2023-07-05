@@ -32,9 +32,9 @@ namespace WindPowerPlatformAPI.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<TurbineReadDto> GetAllTurbines()
+        public IEnumerable<TurbineReadDto> GetAllTurbines(string sortBy)
         {
-            var turbines = _repository.GetAllTurbines();
+            var turbines = _repository.GetAllTurbines(sortBy);
 
             return _mapper.Map<IEnumerable<TurbineReadDto>>(turbines);
         }

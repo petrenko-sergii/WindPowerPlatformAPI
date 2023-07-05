@@ -20,7 +20,8 @@ namespace WindPowerPlatformAPI.Infrastructure.Filters
             var createDto = (TurbineCreateDto)context.ActionArguments.First().Value;
             var  serialNumber = createDto.SerialNumber;
 
-            var existedSerialNumber = _turbineService.GetAllTurbines().FirstOrDefault(t => t.SerialNumber == serialNumber);
+
+            var existedSerialNumber = _turbineService.GetAllTurbines(string.Empty).FirstOrDefault(t => t.SerialNumber == serialNumber);
 
             if (existedSerialNumber != null)
             {

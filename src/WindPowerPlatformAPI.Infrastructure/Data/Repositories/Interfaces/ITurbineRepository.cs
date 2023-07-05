@@ -6,7 +6,7 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces
 	public interface ITurbineRepository
 	{
 		bool SaveChanges();
-		IEnumerable<Turbine> GetAllTurbines();
+		IEnumerable<Turbine> GetAllTurbines(string sortBy);
 		Turbine GetTurbineById(int id);
 		void CreateTurbine(Turbine turbine);
 		void UpdateTurbine(Turbine turbine);

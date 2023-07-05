@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using WindPowerPlatformAPI.Domain.Entities;
 using WindPowerPlatformAPI.Infrastructure.Data.Repositories.Interfaces;
+using System.Linq.Dynamic.Core;
+using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
 
 namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
 {
     class TurbineRepository : ITurbineRepository
     {
         private readonly ApplicationDbContext _context;
+        private ISortHelper<Turbine> _sortHelper;
 
-        public TurbineRepository(ApplicationDbContext context)
+        public TurbineRepository(ApplicationDbContext context, ISortHelper<Turbine> sortHelper)
         {
             _context = context;
+            _sortHelper = sortHelper;
         }
 
         public void CreateTurbine(Turbine turbine)
@@ -26,9 +30,11 @@ namespace WindPowerPlatformAPI.Infrastructure.Data.Repositories
             _context.Turbines.Add(turbine);
         }
 
-        public IEnumerable<Turbine> GetAllTurbines()
+        public IEnumerable<Turbine> GetAllTurbines(string sortBy)
         {
-            return _context.Turbines.ToList();
+            var turbines = _context.Turbines;
+
+            return string.IsNullOrEmpty(sortBy)  ? turbines : _sortHelper.ApplySort(turbines, sortBy);
         }
 
         public Turbine GetTurbineById(int id)

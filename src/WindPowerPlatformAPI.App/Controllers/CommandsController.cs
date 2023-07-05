@@ -73,7 +73,7 @@ namespace WindPowerPlatformAPI.App.Controllers
 		[ServiceFilter(typeof(CommandExistsValidationAttribute<CommandBaseDto>))]
 		public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
 		{
-			var commandModelFromRepo = HttpContext.Items["command"] as CommandUpdateDto;
+			var commandModelFromRepo = HttpContext.Items["command"] as CommandReadDto;
 
 			var commandEntity = _mapper.Map<Command>(commandModelFromRepo);
 

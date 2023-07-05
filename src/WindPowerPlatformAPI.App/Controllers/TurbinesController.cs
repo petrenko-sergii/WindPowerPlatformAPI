@@ -39,9 +39,9 @@ namespace WindPowerPlatformAPI.App.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines()
+		public ActionResult<IEnumerable<TurbineReadDto>> GetAllTurbines(string sortBy)
 		{
-			var turbines = _service.GetAllTurbines();
+			var turbines = _service.GetAllTurbines(sortBy);
 
 			return Ok(turbines);
 		}

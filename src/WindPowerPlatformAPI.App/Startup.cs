@@ -18,6 +18,9 @@ using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using WindPowerPlatformAPI.Infrastructure.Attributes;
 using WindPowerPlatformAPI.Infrastructure.Dtos;
+using WindPowerPlatformAPI.Infrastructure.Helpers.Interfaces;
+using WindPowerPlatformAPI.Infrastructure.Helpers;
+using WindPowerPlatformAPI.Domain.Entities;
 
 namespace WindPowerPlatformAPI.App
 {
@@ -69,6 +72,8 @@ namespace WindPowerPlatformAPI.App
 
             services.AddScoped<CommandValidationFilterAttribute>();
             services.AddScoped<CommandExistsValidationAttribute<CommandBaseDto>>();
+
+            services.AddScoped<ISortHelper<Turbine>, SortHelper<Turbine>>();
 
             services.AddControllers().AddNewtonsoftJson(s =>
             {
