@@ -135,12 +135,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000",
-							"protocol": "http",
+							"raw": "https://localhost:44350/api/commands",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5000"
+							"port": "44350",
+							"path": [
+								"api",
+								"commands"
+							]
 						}
 					},
 					"response": []
@@ -430,6 +434,58 @@
 							"path": [
 								"api",
 								"turbines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Get turbines, sorted by price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/turbines?sortBy=price desc,serialNumber",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price desc,serialNumber"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:44350 - Get turbines, sorted by serial #",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44350/api/turbines?sort=serialNumber",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44350",
+							"path": [
+								"api",
+								"turbines"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "serialNumber"
+								}
 							]
 						}
 					},
