@@ -39,11 +39,11 @@ namespace WindPowerPlatformAPI.Tests
         public void GetTurbineItems_WhenDBIsEmpty_Returns200OK()
         {
             //Arrange
-            mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(0));
+            mockService.Setup(svc => svc.GetAllTurbines(string.Empty)).Returns(GetTurbines(0));
             var controller = GetTurbinesController();
 
             //Act
-            var result = controller.GetAllTurbines();
+            var result = controller.GetAllTurbines(string.Empty);
 
             //Assert
             Assert.IsType<OkObjectResult>(result.Result);
@@ -53,11 +53,11 @@ namespace WindPowerPlatformAPI.Tests
         public void GetTurbineItems_WhenDBHasOneResource_ReturnsOneItem()
         {
             //Arrange
-            mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
+            mockService.Setup(svc => svc.GetAllTurbines(string.Empty)).Returns(GetTurbines(1));
             var controller = GetTurbinesController();
 
             //Act
-            var result = controller.GetAllTurbines();
+            var result = controller.GetAllTurbines(string.Empty);
 
             //Assert
             var okResult = result.Result as OkObjectResult;
@@ -69,11 +69,11 @@ namespace WindPowerPlatformAPI.Tests
         public void GetTurbineItems_WhenDBHasOneResource_Returns200OK()
         {
             //Arrange
-            mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
+            mockService.Setup(svc => svc.GetAllTurbines(string.Empty)).Returns(GetTurbines(1));
             var controller = GetTurbinesController();
 
             //Act
-            var result = controller.GetAllTurbines();
+            var result = controller.GetAllTurbines(string.Empty);
 
             //Assert
             Assert.IsType<OkObjectResult>(result.Result);
@@ -83,11 +83,11 @@ namespace WindPowerPlatformAPI.Tests
         public void GetTurbineItems_WhenDBHasOneResource_ReturnsCorrectType()
         {
             //Arrange
-            mockService.Setup(svc => svc.GetAllTurbines()).Returns(GetTurbines(1));
+            mockService.Setup(svc => svc.GetAllTurbines(string.Empty)).Returns(GetTurbines(1));
             var controller = GetTurbinesController();
 
             //Act
-            var result = controller.GetAllTurbines();
+            var result = controller.GetAllTurbines(string.Empty);
 
             //Assert
             Assert.IsType<ActionResult<IEnumerable<TurbineReadDto>>>(result);

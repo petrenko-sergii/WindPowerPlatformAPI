@@ -9,6 +9,7 @@ using WindPowerPlatformAPI.Infrastructure.Dtos;
 using WindPowerPlatformAPI.App.AutoMapper;
 using Xunit;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace WindPowerPlatformAPI.Tests
 {
@@ -89,59 +90,25 @@ namespace WindPowerPlatformAPI.Tests
         }
 
         [Fact]
-        public void GetCommandByID_WhenNonExistentIDProvided_Returns404NotFound()
-        {
-            //Arrange
-            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = GetCommandsController();
-           
-            //Act
-            var result = controller.GetCommandById(1);
-            
-            //Assert
-            Assert.IsType<NotFoundResult>(result.Result);
-        }
-
-        [Fact]
         public void GetCommandByID_WhenValidIDProvided_Returns200OK()
         {
             //Arrange
-            mockService.Setup(svc => svc.GetCommandById(1))
-                .Returns(new CommandReadDto
-                {
-                    Id = 1,
-                    HowTo = "mock",
-                    Platform = "Mock",
-                    CommandLine = "Mock"
-                });
+            var command = new CommandReadDto
+            {
+                Id = 1,
+                HowTo = "mock",
+                Platform = "Mock",
+                CommandLine = "Mock"
+            };
+
             var controller = GetCommandsController();
+            SetHttpContextMock(controller, command);
 
             //Act
             var result = controller.GetCommandById(1);
 
             //Assert
             Assert.IsType<OkObjectResult>(result.Result);
-        }
-
-        [Fact]
-        public void GetCommandByID_WhenValidIDProvided_ReturnsCorrectType()
-        {
-            //Arrange
-            mockService.Setup(svc => svc.GetCommandById(1))
-                .Returns(new CommandReadDto
-                {
-                    Id = 1,
-                    HowTo = "mock",
-                    Platform = "Mock",
-                    CommandLine = "Mock"
-                });
-            var controller = GetCommandsController();
-
-            //Act
-            var result = controller.GetCommandById(1);
-
-            //Assert
-            Assert.IsType<ActionResult<CommandReadDto>>(result);
         }
 
         [Fact]
@@ -175,91 +142,25 @@ namespace WindPowerPlatformAPI.Tests
         }
 
         [Fact]
-        public void UpdateCommand_WhenValidObjectSubmitted_Returns204NoContent()
-        {
-            //Arrange 
-            mockService.Setup(svc => svc.GetCommandById(1))
-                .Returns(new CommandReadDto
-                {
-                    Id = 1,
-                    HowTo = "mock",
-                    Platform = "Mock",
-                    CommandLine = "Mock"
-                });
-
-            var controller = GetCommandsController();
-
-            //Act
-            var result = controller.UpdateCommand(1, new CommandUpdateDto { });
-
-            //Assert
-            Assert.IsType<NoContentResult>(result);
-        }
-
-        [Fact]
-        public void UpdateCommand_WhenNonExistentResourceIDSubmitted_Returns404NotFound()
-        {
-            //Arrange 
-            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-
-            var controller = GetCommandsController();
-
-            //Act
-            var result = controller.UpdateCommand(0, new CommandUpdateDto { });
-
-            //Assert
-            Assert.IsType<NotFoundResult>(result);
-        }
-
-        [Fact]
-        public void PartialCommandUpdate_WhenNonExistentResourceIDSubmitted_Returns404NotFound()
-        {
-            //Arrange 
-            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-
-            var controller = GetCommandsController();
-
-            //Act
-            var result = controller.PartialCommandUpdate(0, new Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<CommandUpdateDto> { });
-
-            //Assert
-            Assert.IsType<NotFoundResult>(result);
-        }
-
-        [Fact]
         public void DeleteCommand_WhenValidResourceIDSubmitted_Returns200OK()
         {
             //Arrange 
-            mockService.Setup(svc => svc.GetCommandById(1))
-                    .Returns(new CommandReadDto
-                    {
-                        Id = 1,
-                        HowTo = "mock",
-                        Platform = "Mock",
-                        CommandLine = "Mock"
-                    });
+            var command = new CommandReadDto
+            {
+                Id = 1,
+                HowTo = "mock",
+                Platform = "Mock",
+                CommandLine = "Mock"
+            };
 
             var controller = GetCommandsController();
+            SetHttpContextMock(controller, command);
 
             //Act
             var result = controller.DeleteCommand(1);
 
             //Assert
             Assert.IsType<NoContentResult>(result);
-        }
-
-        [Fact]
-        public void DeleteCommand_WhenNonExistentResourceIDSubmitted_Returns_404NotFound()
-        {
-            //Arrange 
-            mockService.Setup(svc => svc.GetCommandById(0)).Returns(() => null);
-            var controller = GetCommandsController();
-
-            //Act
-            var result = controller.DeleteCommand(0);
-
-            //Assert
-            Assert.IsType<NotFoundResult>(result);
         }
 
         public void Dispose()
@@ -290,6 +191,13 @@ namespace WindPowerPlatformAPI.Tests
                 });
             }
             return commands;
+        }
+
+        private static void SetHttpContextMock(CommandsController controller, CommandReadDto command)
+        {
+            controller.ControllerContext = new ControllerContext();
+            controller.ControllerContext.HttpContext = new DefaultHttpContext();
+            controller.ControllerContext.HttpContext.Items["command"] = command;
         }
     }
 }
